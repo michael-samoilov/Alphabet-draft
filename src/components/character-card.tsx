@@ -7,12 +7,15 @@ interface CharacterCardProps {
   character: AlphabetChar;
   selected: boolean;
   onToggle: () => void;
+  /** Optional subtitle shown below script name (e.g. IPA in script view) */
+  subtitle?: string;
 }
 
 export function CharacterCard({
   character,
   selected,
   onToggle,
+  subtitle,
 }: CharacterCardProps) {
   return (
     <button
@@ -43,7 +46,7 @@ export function CharacterCard({
             : "text-zinc-400 dark:text-zinc-500"
         )}
       >
-        {character.script}
+        {subtitle || character.script}
       </span>
       {selected && (
         <div className="absolute -top-1.5 -right-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500 text-[10px] text-white shadow">

@@ -1,10 +1,11 @@
 "use client";
 
+import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import type { AlphabetChar, SoundGroup } from "@/data/alphabets";
 
-interface SelectedEntry {
+export interface SelectedEntry {
   soundId: string;
   soundLabel: string;
   character: AlphabetChar;
@@ -22,6 +23,36 @@ export function MyAlphabetPanel({
   onRemove,
   onClear,
 }: MyAlphabetPanelProps) {
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  const copyToClipboard = () => {
+    const text = entries.map((e) => e.character.char).join(" ");
+    navigator.clipboard.writeText(text);
+  };
+
+  const downloadAsText = () => {
+    const lines = entries.map(
+      (e) => `${e.character.char}\t${e.character.name}\t${e.character.script}\t${e.soundLabel}`
+    );
+    const content = "Char\tName\tScript\tSound\n" + lines.join("\n");
+    const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "my-alphabet.txt";
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  // Count by script
+  const scriptCounts = new Map<string, number>();
+  for (const e of entries) {
+    scriptCounts.set(
+      e.character.script,
+      (scriptCounts.get(e.character.script) || 0) + 1
+    );
+  }
+
   if (entries.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-zinc-300 p-8 text-center dark:border-zinc-700">
@@ -37,16 +68,29 @@ export function MyAlphabetPanel({
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <h2 className="text-xl font-bold">My Alphabet</h2>
           <Badge variant="secondary">{entries.length} characters</Badge>
+          {Array.from(scriptCounts.entries()).map(([script, count]) => (
+            <Badge key={script} variant="outline" className="text-[10px]">
+              {script}: {count}
+            </Badge>
+          ))}
         </div>
-        <Button variant="ghost" size="sm" onClick={onClear}>
-          Clear all
-        </Button>
+        <div className="flex gap-1">
+          <Button variant="outline" size="sm" onClick={copyToClipboard}>
+            Copy
+          </Button>
+          <Button variant="outline" size="sm" onClick={downloadAsText}>
+            Export
+          </Button>
+          <Button variant="ghost" size="sm" onClick={onClear}>
+            Clear
+          </Button>
+        </div>
       </div>
-      <div className="flex flex-wrap gap-3">
+      <div ref={gridRef} className="flex flex-wrap gap-3">
         {entries.map(({ character, key, soundLabel }) => (
           <button
             key={key}
@@ -70,7 +114,7 @@ export function MyAlphabetPanel({
   );
 }
 
-/** Resolve selections map → SelectedEntry[] for the panel */
+/** Resolve selections map -> SelectedEntry[] for the panel */
 export function resolveSelections(
   selections: Record<string, boolean>,
   soundGroups: SoundGroup[]
