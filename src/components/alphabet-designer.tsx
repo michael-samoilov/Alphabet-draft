@@ -282,15 +282,15 @@ function FilterList({
                   : "text-zinc-500 hover:bg-zinc-50 dark:text-zinc-400 dark:hover:bg-zinc-900"
               }`}
             >
-              <span className="truncate">{item.label}</span>
-              <span className="ml-1 flex items-center gap-1">
+              <span className="flex items-center gap-1.5 truncate">
+                <span className="truncate">{item.label}</span>
                 {item.badge && (
                   <span className="font-mono text-[10px] opacity-50">
                     {item.badge}
                   </span>
                 )}
-                <span className="text-[10px] opacity-40">{item.count}</span>
               </span>
+              <span className="text-[10px] opacity-40 ml-1 shrink-0">{item.count}</span>
             </button>
           );
         })}
@@ -344,8 +344,11 @@ function MobileFilterBar({
                   : "text-zinc-500 hover:bg-zinc-50 dark:text-zinc-400 dark:hover:bg-zinc-900"
               }`}
             >
-              <span className="truncate">{g.label}</span>
-              <span className="font-mono text-[9px] opacity-50">{g.ipa}</span>
+              <span className="flex items-center gap-1 truncate">
+                <span className="truncate">{g.label}</span>
+                <span className="font-mono text-[9px] opacity-50">{g.ipa}</span>
+              </span>
+              <span className="text-[9px] opacity-40 ml-1 shrink-0">{g.characters.length}</span>
             </button>
           ))}
         </div>
@@ -378,6 +381,7 @@ function MobileFilterBar({
               }`}
             >
               <span className="truncate">{s}</span>
+              <span className="text-[9px] opacity-40 ml-1 shrink-0">{getCharactersByScript(s).length}</span>
             </button>
           ))}
         </div>
