@@ -59,17 +59,25 @@ export function MyAlphabetPanel({
 
   const rows = useMemo(() => arrangeAsKeyboard(entries), [entries]);
 
-  // Fixed keyboard height. Keys are square, centered, expand outward.
+  // Fixed keyboard height. Keys start large and shrink as more are added.
   const KEYBOARD_HEIGHT = 100;
-  const BASE_KEY_SIZE = 28;
+  const MAX_KEY_SIZE = 44;
+  const MIN_KEY_SIZE = 24;
   const gap = 3;
+  const count = entries.length;
   const numRows = rows.length || 1;
-  const naturalHeight = numRows * BASE_KEY_SIZE + (numRows - 1) * gap;
-  const needsShrink = naturalHeight > KEYBOARD_HEIGHT;
-  const keySize = needsShrink
-    ? Math.max(14, (KEYBOARD_HEIGHT - gap * (numRows - 1)) / numRows)
-    : BASE_KEY_SIZE;
-  const fontSize = Math.max(8, Math.min(16, keySize * 0.55));
+
+  // Scale key size: large when few, smaller as count grows
+  // Lerp from MAX down to MIN over ~20 keys, then hold at MIN
+  const t = Math.min(1, count / 20);
+  const baseSize = MAX_KEY_SIZE - t * (MAX_KEY_SIZE - MIN_KEY_SIZE);
+
+  // If rows overflow container, shrink further
+  const naturalHeight = numRows * baseSize + (numRows - 1) * gap;
+  const keySize = naturalHeight > KEYBOARD_HEIGHT
+    ? Math.max(12, (KEYBOARD_HEIGHT - gap * (numRows - 1)) / numRows)
+    : baseSize;
+  const fontSize = Math.max(8, Math.min(20, keySize * 0.5));
 
   return (
     <div className="space-y-2">
