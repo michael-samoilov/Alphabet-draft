@@ -89,7 +89,9 @@ export const soundGroups: SoundGroup[] = [
       c("ඇ", "Ae", "Sinhala", "æ"),
       c("ඈ", "Aee", "Sinhala", "æː"),
       // N'Ko
-      c("ߊ", "A", "N'Ko", "a")
+      c("ߊ", "A", "N'Ko", "a"),
+      // Tengwar (Elvish)
+      c("\uE040", "Three Dots", "Tengwar (Elvish)", "a")
     ],
   },
   {
@@ -147,6 +149,8 @@ export const soundGroups: SoundGroup[] = [
       c("ឯ", "E", "Khmer", "e"),
       // Icelandic
       c("É", "E-acute", "Icelandic", "jɛ"),
+      // Tengwar (Elvish)
+      c("\uE044", "Acute", "Tengwar (Elvish)", "e"),
     ],
   },
   {
@@ -201,6 +205,8 @@ export const soundGroups: SoundGroup[] = [
       // Icelandic
       c("Í", "I-acute", "Icelandic", "i"),
       c("Ý", "Y-acute", "Icelandic", "i"),
+      // Tengwar (Elvish)
+      c("\uE048", "Dot", "Tengwar (Elvish)", "i"),
     ],
   },
   {
@@ -253,6 +259,8 @@ export const soundGroups: SoundGroup[] = [
       c("ឱ", "O", "Khmer", "o"),
       // Icelandic
       c("Ó", "O-acute", "Icelandic", "ou"),
+      // Tengwar (Elvish)
+      c("\uE04C", "Right Curl", "Tengwar (Elvish)", "o"),
     ],
   },
   {
@@ -299,6 +307,8 @@ export const soundGroups: SoundGroup[] = [
       c("ឩ", "Uu", "Khmer", "uː"),
       // Icelandic
       c("Ú", "U-acute", "Icelandic", "u"),
+      // Tengwar (Elvish)
+      c("\uE050", "Left Curl", "Tengwar (Elvish)", "u"),
     ],
   },
   // ═══════════════════════════════════════════════════════
@@ -342,7 +352,9 @@ export const soundGroups: SoundGroup[] = [
       c("බ", "Ba", "Sinhala", "b"),
       c("භ", "Bha", "Sinhala", "bʱ"),
       // N'Ko
-      c("ߓ", "Ba", "N'Ko", "b")
+      c("ߓ", "Ba", "N'Ko", "b"),
+      // Tengwar (Elvish)
+      c("\uE005", "Umbar", "Tengwar (Elvish)", "b")
     ],
   },
   {
@@ -390,7 +402,9 @@ export const soundGroups: SoundGroup[] = [
       c("ග", "Ga", "Sinhala", "ɡ"),
       c("ඝ", "Gha", "Sinhala", "ɡʱ"),
       // N'Ko
-      c("ߜ", "Gba", "N'Ko", "ɡb")
+      c("ߜ", "Gba", "N'Ko", "ɡb"),
+      // Tengwar (Elvish)
+      c("\uE006", "Anga", "Tengwar (Elvish)", "g")
     ],
   },
   {
@@ -453,6 +467,8 @@ export const soundGroups: SoundGroup[] = [
       c("ដ", "Da", "Khmer", "d"),
       c("ឌ", "Do", "Khmer", "d"),
       c("ឍ", "Dho", "Khmer", "dʱ"),
+      // Tengwar (Elvish)
+      c("\uE004", "Ando", "Tengwar (Elvish)", "d"),
     ],
   },
   {
@@ -512,6 +528,8 @@ export const soundGroups: SoundGroup[] = [
       // Khmer
       c("ក", "Ka", "Khmer", "k"),
       c("គ", "Ko", "Khmer", "k"),
+      // Tengwar (Elvish)
+      c("\uE002", "Calma", "Tengwar (Elvish)", "k"),
     ],
   },
   {
@@ -572,6 +590,8 @@ export const soundGroups: SoundGroup[] = [
       // Khmer
       c("ល", "Lo", "Khmer", "l"),
       c("ឡ", "La", "Khmer", "l"),
+      // Tengwar (Elvish)
+      c("\uE01A", "Lambe", "Tengwar (Elvish)", "l"),
     ],
   },
   {
@@ -620,6 +640,8 @@ export const soundGroups: SoundGroup[] = [
       c("ߡ", "Ma", "N'Ko", "m"),
       // Khmer
       c("ម", "Mo", "Khmer", "m"),
+      // Tengwar (Elvish)
+      c("\uE011", "Malta", "Tengwar (Elvish)", "m"),
     ],
   },
   {
@@ -696,6 +718,8 @@ export const soundGroups: SoundGroup[] = [
       c("ញ", "Nyo", "Khmer", "ɲ"),
       c("ណ", "Na", "Khmer", "n"),
       c("ន", "No", "Khmer", "n"),
+      // Tengwar (Elvish)
+      c("\uE010", "Númen", "Tengwar (Elvish)", "n"),
     ],
   },
   {
@@ -755,6 +779,8 @@ export const soundGroups: SoundGroup[] = [
       c("ផ", "Pha", "Khmer", "pʰ"),
       c("ព", "Po", "Khmer", "p"),
       c("ភ", "Pho", "Khmer", "pʰ"),
+      // Tengwar (Elvish)
+      c("\uE001", "Parma", "Tengwar (Elvish)", "p"),
     ],
   },
   {
@@ -806,6 +832,8 @@ export const soundGroups: SoundGroup[] = [
       c("ߚ", "Rra", "N'Ko", "r"),
       // Khmer
       c("រ", "Ro", "Khmer", "r"),
+      // Tengwar (Elvish)
+      c("\uE018", "Rómen", "Tengwar (Elvish)", "r"),
     ],
   },
   {
@@ -870,6 +898,8 @@ export const soundGroups: SoundGroup[] = [
       c("ߛ", "Sa", "N'Ko", "s"),
       // Khmer
       c("ស", "So", "Khmer", "s"),
+      // Tengwar (Elvish)
+      c("\uE01C", "Silme", "Tengwar (Elvish)", "s"),
     ],
   },
   {
@@ -956,6 +986,8 @@ export const soundGroups: SoundGroup[] = [
       c("ថ", "Tha", "Khmer", "tʰ"),
       c("ទ", "To", "Khmer", "t"),
       c("ធ", "Tho", "Khmer", "tʰ"),
+      // Tengwar (Elvish)
+      c("\uE000", "Tinco", "Tengwar (Elvish)", "t"),
     ],
   },
   {
@@ -983,7 +1015,9 @@ export const soundGroups: SoundGroup[] = [
       c("ຝ", "Fo", "Lao", "f"),
       c("ຟ", "Fo", "Lao", "f"),
       // N'Ko
-      c("ߝ", "Fa", "N'Ko", "f")
+      c("ߝ", "Fa", "N'Ko", "f"),
+      // Tengwar (Elvish)
+      c("\uE009", "Formen", "Tengwar (Elvish)", "f")
     ],
   },
   {
@@ -1039,6 +1073,9 @@ export const soundGroups: SoundGroup[] = [
       c("ߤ", "Ha", "N'Ko", "h"),
       // Khmer
       c("ហ", "Ho", "Khmer", "h"),
+      // Tengwar (Elvish)
+      c("\uE00A", "Harma", "Tengwar (Elvish)", "h"),
+      c("\uE020", "Hyarmen", "Tengwar (Elvish)", "h"),
     ],
   },
   {
@@ -1060,6 +1097,9 @@ export const soundGroups: SoundGroup[] = [
       c("ව", "Va", "Sinhala", "v"),
       // Khmer
       c("វ", "Vo", "Khmer", "v"),
+      // Tengwar (Elvish)
+      c("\uE00D", "Ampa", "Tengwar (Elvish)", "v"),
+      c("\uE017", "Vilya", "Tengwar (Elvish)", "v"),
     ],
   },
   {
@@ -1094,7 +1134,9 @@ export const soundGroups: SoundGroup[] = [
       // Lao
       c("ວ", "Wo", "Lao", "w"),
       // N'Ko
-      c("ߥ", "Wa", "N'Ko", "w")
+      c("ߥ", "Wa", "N'Ko", "w"),
+      // Tengwar (Elvish)
+      c("\uE015", "Vala", "Tengwar (Elvish)", "w")
     ],
   },
   {
@@ -1159,6 +1201,9 @@ export const soundGroups: SoundGroup[] = [
       c("ߦ", "Ya", "N'Ko", "j"),
       // Khmer
       c("យ", "Yo", "Khmer", "j"),
+      // Tengwar (Elvish)
+      c("\uE016", "Anna", "Tengwar (Elvish)", "j"),
+      c("\uE021", "Yanta", "Tengwar (Elvish)", "j"),
     ],
   },
   {
@@ -1197,7 +1242,9 @@ export const soundGroups: SoundGroup[] = [
       // Tibetan
       c("ཟ", "Za", "Tibetan", "z"),
       // Syriac
-      c("ܙ", "Zayn", "Syriac", "z")
+      c("ܙ", "Zayn", "Syriac", "z"),
+      // Tengwar (Elvish)
+      c("\uE01E", "Áre", "Tengwar (Elvish)", "z")
     ],
   },
   {
@@ -1302,6 +1349,8 @@ export const soundGroups: SoundGroup[] = [
       c("Þ", "Thorn", "Latin Extended", "θ"),
       c("Ⲑ", "Thetha", "Coptic", "tʰ"),
       c("ᚦ", "Thurisaz", "Elder Futhark", "θ"),
+      // Tengwar (Elvish)
+      c("\uE008", "Thúle", "Tengwar (Elvish)", "θ"),
     ],
   },
   {
@@ -1329,6 +1378,8 @@ export const soundGroups: SoundGroup[] = [
       c("ඞ", "Nga", "Sinhala", "ŋ"),
       // Khmer
       c("ង", "Ngo", "Khmer", "ŋ"),
+      // Tengwar (Elvish)
+      c("\uE012", "Noldo", "Tengwar (Elvish)", "ŋ"),
     ],
   },
   {

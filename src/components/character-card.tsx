@@ -1,7 +1,9 @@
 "use client";
 
+import { useCallback, useState } from "react";
 import { cn } from "@/lib/utils";
 import type { AlphabetChar } from "@/data/alphabets";
+import { useLongPress } from "@/hooks/use-long-press";
 
 interface CharacterCardProps {
   character: AlphabetChar;
@@ -17,11 +19,31 @@ export function CharacterCard({
   onToggle,
   subtitle,
 }: CharacterCardProps) {
+  const [copied, setCopied] = useState(false);
+
+  const handleLongPress = useCallback(() => {
+    navigator.clipboard.writeText(character.char);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1200);
+  }, [character.char]);
+
+  const { onPointerDown, onPointerUp, onPointerLeave, didLongPress } =
+    useLongPress(handleLongPress);
+
+  const handleClick = () => {
+    if (didLongPress.current) return; // suppress click after long-press
+    onToggle();
+  };
+
   return (
     <button
-      onClick={onToggle}
+      onClick={handleClick}
+      onPointerDown={onPointerDown}
+      onPointerUp={onPointerUp}
+      onPointerLeave={onPointerLeave}
+      title="Click to select — long-press to copy"
       className={cn(
-        "group relative flex flex-col items-center justify-center gap-1 rounded-xl border-2 p-3 transition-all duration-200 hover:scale-105 cursor-pointer min-w-[80px]",
+        "group relative flex flex-col items-center justify-center gap-1 rounded-xl border-2 p-3 transition-all duration-200 hover:scale-105 cursor-pointer min-w-[80px] select-none",
         selected
           ? "border-zinc-900 bg-zinc-900 text-white shadow-lg dark:border-zinc-100 dark:bg-zinc-100 dark:text-zinc-900"
           : "border-zinc-200 bg-white hover:border-zinc-400 hover:shadow-md dark:border-zinc-700 dark:bg-zinc-900 dark:hover:border-zinc-500"
@@ -51,6 +73,11 @@ export function CharacterCard({
       {selected && (
         <div className="absolute -top-1.5 -right-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500 text-[10px] text-white shadow">
           ✓
+        </div>
+      )}
+      {copied && (
+        <div className="absolute inset-0 flex items-center justify-center rounded-xl bg-black/70 text-xs font-medium text-white">
+          Copied!
         </div>
       )}
     </button>

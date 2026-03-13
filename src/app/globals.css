@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+/*
+ * Tengwar (Elvish) font — characters live in the Unicode Private Use Area
+ * (CSUR mapping U+E000–E07F). Install a Tengwar font such as "Tengwar Annatar"
+ * or "Tengwar Telcontar" and they will render automatically via this rule.
+ * Without the font, browsers show placeholder boxes.
+ */
+@font-face {
+  font-family: "Tengwar";
+  src: local("Tengwar Annatar"), local("Tengwar Telcontar"),
+       local("Tengwar Sindarin"), local("Tengwar Quenya");
+  unicode-range: U+E000-E07F;
+}
+
 :root {
   --background: #fafafa;
   --foreground: #0a0a0a;

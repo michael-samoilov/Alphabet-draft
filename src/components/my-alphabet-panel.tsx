@@ -1,8 +1,9 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useCallback, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useLongPress } from "@/hooks/use-long-press";
 import type { AlphabetChar, SoundGroup } from "@/data/alphabets";
 
 export interface SelectedEntry {
@@ -124,24 +125,73 @@ export function MyAlphabetPanel({
               }}
             >
               {row.map(({ character, key }) => (
-                <button
+                <KeyboardKey
                   key={key}
-                  onClick={() => onRemove(key)}
-                  title={`${character.name} (${character.script}) — click to remove`}
-                  className="group relative flex items-center justify-center rounded-lg border border-emerald-200 bg-emerald-50 leading-none transition-all hover:border-red-300 hover:bg-red-50 active:scale-95 dark:border-emerald-800 dark:bg-emerald-950 dark:hover:border-red-700 dark:hover:bg-red-950 cursor-pointer shadow-sm overflow-hidden shrink-0"
-                  style={{ width: `${keySize}px`, height: `${keySize}px`, fontSize: `${fontSize}px` }}
-                >
-                  {character.char}
-                  <div className="absolute -top-1 -right-1 hidden h-3.5 w-3.5 items-center justify-center rounded-full bg-red-500 text-[8px] text-white shadow group-hover:flex">
-                    ✕
-                  </div>
-                </button>
+                  character={character}
+                  entryKey={key}
+                  onRemove={onRemove}
+                  keySize={keySize}
+                  fontSize={fontSize}
+                />
               ))}
             </div>
           ))
         )}
       </div>
     </div>
+  );
+}
+
+/** Single key in the keyboard panel — supports long-press to copy */
+function KeyboardKey({
+  character,
+  entryKey,
+  onRemove,
+  keySize,
+  fontSize,
+}: {
+  character: AlphabetChar;
+  entryKey: string;
+  onRemove: (key: string) => void;
+  keySize: number;
+  fontSize: number;
+}) {
+  const [copied, setCopied] = useState(false);
+
+  const handleLongPress = useCallback(() => {
+    navigator.clipboard.writeText(character.char);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1200);
+  }, [character.char]);
+
+  const { onPointerDown, onPointerUp, onPointerLeave, didLongPress } =
+    useLongPress(handleLongPress);
+
+  const handleClick = () => {
+    if (didLongPress.current) return;
+    onRemove(entryKey);
+  };
+
+  return (
+    <button
+      onClick={handleClick}
+      onPointerDown={onPointerDown}
+      onPointerUp={onPointerUp}
+      onPointerLeave={onPointerLeave}
+      title={`${character.name} (${character.script}) — click to remove, long-press to copy`}
+      className="group relative flex items-center justify-center rounded-lg border border-emerald-200 bg-emerald-50 leading-none transition-all hover:border-red-300 hover:bg-red-50 active:scale-95 dark:border-emerald-800 dark:bg-emerald-950 dark:hover:border-red-700 dark:hover:bg-red-950 cursor-pointer shadow-sm overflow-hidden shrink-0 select-none"
+      style={{ width: `${keySize}px`, height: `${keySize}px`, fontSize: `${fontSize}px` }}
+    >
+      {character.char}
+      <div className="absolute -top-1 -right-1 hidden h-3.5 w-3.5 items-center justify-center rounded-full bg-red-500 text-[8px] text-white shadow group-hover:flex">
+        ✕
+      </div>
+      {copied && (
+        <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-black/70 text-[8px] font-medium text-white">
+          Copied
+        </div>
+      )}
+    </button>
   );
 }
 
