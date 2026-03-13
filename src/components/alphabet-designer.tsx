@@ -251,60 +251,61 @@ function FilterList({
         </span>
       </button>
 
-      {/* Scrollable list — fixed height */}
-      <div className="h-36 overflow-y-auto">
-        {/* All option */}
-        <button
-          onClick={() => {
-            // Clear all selections for this filter
-            if (selected.size > 0) {
-              // If anything is selected, deselect all
-              for (const id of selected) onToggle(id);
-            }
-          }}
-          className={`w-full flex items-center justify-between px-3 py-1.5 text-xs transition-colors cursor-pointer ${
-            selected.size === 0
-              ? "bg-zinc-100 font-medium text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100"
-              : "text-zinc-500 hover:bg-zinc-50 dark:text-zinc-400 dark:hover:bg-zinc-900"
-          }`}
-        >
-          <span>All</span>
-        </button>
+      {/* Fixed-height body: scroll area + optional clear button share the space */}
+      <div className="flex flex-col" style={{ height: "140px" }}>
+        <div className="flex-1 min-h-0 overflow-y-auto">
+          {/* All option */}
+          <button
+            onClick={() => {
+              if (selected.size > 0) {
+                for (const id of selected) onToggle(id);
+              }
+            }}
+            className={`w-full flex items-center justify-between px-3 py-1.5 text-xs transition-colors cursor-pointer ${
+              selected.size === 0
+                ? "bg-zinc-100 font-medium text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100"
+                : "text-zinc-500 hover:bg-zinc-50 dark:text-zinc-400 dark:hover:bg-zinc-900"
+            }`}
+          >
+            <span>All</span>
+          </button>
 
-        {items.map((item) => {
-          const isActive = selected.has(item.id);
-          return (
-            <button
-              key={item.id}
-              onClick={() => onToggle(item.id)}
-              className={`w-full flex items-center justify-between px-3 py-1.5 text-xs transition-colors cursor-pointer ${
-                isActive
-                  ? "bg-zinc-100 font-medium text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100"
-                  : "text-zinc-500 hover:bg-zinc-50 dark:text-zinc-400 dark:hover:bg-zinc-900"
-              }`}
-            >
-              <span className="flex items-center gap-1.5 truncate">
-                <span className="truncate">{item.label}</span>
-                {item.badge && (
-                  <span className="font-mono text-[10px] opacity-50">
-                    {item.badge}
-                  </span>
-                )}
-              </span>
-              <span className="text-[10px] opacity-40 ml-1 shrink-0">{item.count}</span>
-            </button>
-          );
-        })}
+          {items.map((item) => {
+            const isActive = selected.has(item.id);
+            return (
+              <button
+                key={item.id}
+                onClick={() => onToggle(item.id)}
+                className={`w-full flex items-center justify-between px-3 py-1.5 text-xs transition-colors cursor-pointer ${
+                  isActive
+                    ? "bg-zinc-100 font-medium text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100"
+                    : "text-zinc-500 hover:bg-zinc-50 dark:text-zinc-400 dark:hover:bg-zinc-900"
+                }`}
+              >
+                <span className="flex items-center gap-1.5 truncate">
+                  <span className="truncate">{item.label}</span>
+                  {item.badge && (
+                    <span className="font-mono text-[10px] opacity-50">
+                      {item.badge}
+                    </span>
+                  )}
+                </span>
+                <span className="text-[10px] opacity-40 ml-1 shrink-0">{item.count}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        {selected.size > 0 && (
+          <button
+            onClick={() => { for (const id of selected) onToggle(id); }}
+            className="shrink-0 w-full flex items-center justify-center text-[10px] text-zinc-400 hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300 border-t border-zinc-200 dark:border-zinc-800 transition-colors cursor-pointer"
+            style={{ height: "28px" }}
+          >
+            Clear filters
+          </button>
+        )}
       </div>
-
-      {selected.size > 0 && (
-        <button
-          onClick={() => { for (const id of selected) onToggle(id); }}
-          className="w-full text-center text-[10px] text-zinc-400 hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300 py-1 border-t border-zinc-200 dark:border-zinc-800 transition-colors cursor-pointer"
-        >
-          Clear filters
-        </button>
-      )}
     </div>
   );
 }
@@ -343,33 +344,36 @@ function MobileFilterBar({
             {groupBy === "sound" ? "Grouped" : "Group by"}
           </span>
         </button>
-        <div className="h-24 overflow-y-auto">
-          {soundGroups.map((g) => (
+        <div className="flex flex-col" style={{ height: "110px" }}>
+          <div className="flex-1 min-h-0 overflow-y-auto">
+            {soundGroups.map((g) => (
+              <button
+                key={g.id}
+                onClick={() => toggleSound(g.id)}
+                className={`w-full flex items-center justify-between px-2.5 py-1 text-[11px] transition-colors cursor-pointer ${
+                  selectedSounds.has(g.id)
+                    ? "bg-zinc-100 font-medium text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100"
+                    : "text-zinc-500 hover:bg-zinc-50 dark:text-zinc-400 dark:hover:bg-zinc-900"
+                }`}
+              >
+                <span className="flex items-center gap-1 truncate">
+                  <span className="truncate">{g.label}</span>
+                  <span className="font-mono text-[9px] opacity-50">{g.ipa}</span>
+                </span>
+                <span className="text-[9px] opacity-40 ml-1 shrink-0">{g.characters.length}</span>
+              </button>
+            ))}
+          </div>
+          {selectedSounds.size > 0 && (
             <button
-              key={g.id}
-              onClick={() => toggleSound(g.id)}
-              className={`w-full flex items-center justify-between px-2.5 py-1 text-[11px] transition-colors cursor-pointer ${
-                selectedSounds.has(g.id)
-                  ? "bg-zinc-100 font-medium text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100"
-                  : "text-zinc-500 hover:bg-zinc-50 dark:text-zinc-400 dark:hover:bg-zinc-900"
-              }`}
+              onClick={() => { for (const id of selectedSounds) toggleSound(id); }}
+              className="shrink-0 w-full flex items-center justify-center text-[9px] text-zinc-400 hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300 border-t border-zinc-200 dark:border-zinc-800 transition-colors cursor-pointer"
+              style={{ height: "22px" }}
             >
-              <span className="flex items-center gap-1 truncate">
-                <span className="truncate">{g.label}</span>
-                <span className="font-mono text-[9px] opacity-50">{g.ipa}</span>
-              </span>
-              <span className="text-[9px] opacity-40 ml-1 shrink-0">{g.characters.length}</span>
+              Clear filters
             </button>
-          ))}
+          )}
         </div>
-        {selectedSounds.size > 0 && (
-          <button
-            onClick={() => { for (const id of selectedSounds) toggleSound(id); }}
-            className="w-full text-center text-[9px] text-zinc-400 hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300 py-1 border-t border-zinc-200 dark:border-zinc-800 transition-colors cursor-pointer"
-          >
-            Clear filters
-          </button>
-        )}
       </div>
 
       {/* Script filter list */}
@@ -387,30 +391,33 @@ function MobileFilterBar({
             {groupBy === "script" ? "Grouped" : "Group by"}
           </span>
         </button>
-        <div className="h-24 overflow-y-auto">
-          {allScripts.map((s) => (
+        <div className="flex flex-col" style={{ height: "110px" }}>
+          <div className="flex-1 min-h-0 overflow-y-auto">
+            {allScripts.map((s) => (
+              <button
+                key={s}
+                onClick={() => toggleScript(s)}
+                className={`w-full flex items-center justify-between px-2.5 py-1 text-[11px] transition-colors cursor-pointer ${
+                  selectedScripts.has(s)
+                    ? "bg-zinc-100 font-medium text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100"
+                    : "text-zinc-500 hover:bg-zinc-50 dark:text-zinc-400 dark:hover:bg-zinc-900"
+                }`}
+              >
+                <span className="truncate">{s}</span>
+                <span className="text-[9px] opacity-40 ml-1 shrink-0">{getCharactersByScript(s).length}</span>
+              </button>
+            ))}
+          </div>
+          {selectedScripts.size > 0 && (
             <button
-              key={s}
-              onClick={() => toggleScript(s)}
-              className={`w-full flex items-center justify-between px-2.5 py-1 text-[11px] transition-colors cursor-pointer ${
-                selectedScripts.has(s)
-                  ? "bg-zinc-100 font-medium text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100"
-                  : "text-zinc-500 hover:bg-zinc-50 dark:text-zinc-400 dark:hover:bg-zinc-900"
-              }`}
+              onClick={() => { for (const id of selectedScripts) toggleScript(id); }}
+              className="shrink-0 w-full flex items-center justify-center text-[9px] text-zinc-400 hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300 border-t border-zinc-200 dark:border-zinc-800 transition-colors cursor-pointer"
+              style={{ height: "22px" }}
             >
-              <span className="truncate">{s}</span>
-              <span className="text-[9px] opacity-40 ml-1 shrink-0">{getCharactersByScript(s).length}</span>
+              Clear filters
             </button>
-          ))}
+          )}
         </div>
-        {selectedScripts.size > 0 && (
-          <button
-            onClick={() => { for (const id of selectedScripts) toggleScript(id); }}
-            className="w-full text-center text-[9px] text-zinc-400 hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300 py-1 border-t border-zinc-200 dark:border-zinc-800 transition-colors cursor-pointer"
-          >
-            Clear filters
-          </button>
-        )}
       </div>
     </div>
   );
