@@ -23,7 +23,6 @@ export function AlphabetDesigner() {
     "alphabet-designer-selections",
     {}
   );
-  const [searchQuery, setSearchQuery] = useState("");
   const [groupBy, setGroupBy] = useState<GroupBy>("sound");
   const [selectedSounds, setSelectedSounds] = useState<Set<string>>(new Set());
   const [selectedScripts, setSelectedScripts] = useState<Set<string>>(
@@ -72,7 +71,6 @@ export function AlphabetDesigner() {
 
   // Filter characters based on selected sounds, scripts, and search
   const filteredCharacters = useMemo(() => {
-    const query = searchQuery.toLowerCase().trim();
     const results: {
       character: AlphabetChar;
       soundGroup: SoundGroup;
@@ -87,16 +85,6 @@ export function AlphabetDesigner() {
         if (selectedScripts.size > 0 && !selectedScripts.has(char.script))
           continue;
 
-        if (query) {
-          const match =
-            char.name.toLowerCase().includes(query) ||
-            char.script.toLowerCase().includes(query) ||
-            char.char.includes(query) ||
-            char.sound.toLowerCase().includes(query) ||
-            group.label.toLowerCase().includes(query);
-          if (!match) continue;
-        }
-
         const key = `${group.id}:${char.name}:${char.script}`;
         if (!seen.has(key)) {
           seen.add(key);
@@ -105,7 +93,7 @@ export function AlphabetDesigner() {
       }
     }
     return results;
-  }, [selectedSounds, selectedScripts, searchQuery]);
+  }, [selectedSounds, selectedScripts]);
 
   // Group the filtered characters
   const grouped = useMemo(() => {
@@ -141,102 +129,72 @@ export function AlphabetDesigner() {
   );
 
   return (
-    <div className="mx-auto max-w-6xl space-y-6 px-4 py-8 sm:px-6 lg:px-8">
-      {/* Header */}
-      <header className="space-y-2 text-center">
-        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-          Alphabet Designer
-        </h1>
-        <p className="text-lg text-zinc-500 dark:text-zinc-400">
-          Pick the coolest characters from writing systems around the world.
-        </p>
-      </header>
-
-      {/* My Alphabet (sticky) */}
-      <section className="sticky top-0 z-10 rounded-2xl border border-zinc-200 bg-white/80 p-5 shadow-sm backdrop-blur-md dark:border-zinc-800 dark:bg-zinc-950/80">
-        <MyAlphabetPanel
-          entries={selectedEntries}
-          onRemove={handleRemove}
-          onClear={handleClear}
-        />
-      </section>
-
-      {/* Search */}
-      <input
-        type="text"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        placeholder="Search characters by name, script, or sound..."
-        className="w-full rounded-lg border border-zinc-200 bg-white px-4 py-2.5 text-sm outline-none transition-colors placeholder:text-zinc-400 focus:border-zinc-400 focus:ring-1 focus:ring-zinc-400 dark:border-zinc-700 dark:bg-zinc-900 dark:placeholder:text-zinc-500 dark:focus:border-zinc-500"
-      />
-
-      {/* Filter lists + main content */}
-      <div className="flex gap-6">
-        {/* Sidebar: two filter lists */}
-        <aside className="hidden w-56 shrink-0 space-y-4 sm:block">
-          {/* Sound filter list */}
-          <FilterList
-            title="Sounds"
-            groupByActive={groupBy === "sound"}
-            onGroupByToggle={() => setGroupBy("sound")}
-            items={soundGroups.map((g) => ({
-              id: g.id,
-              label: g.label,
-              badge: g.ipa,
-              count: g.characters.length,
-            }))}
-            selected={selectedSounds}
-            onToggle={toggleSound}
+    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      {/* Sticky top pane: keyboard + filters (~40vh on mobile) */}
+      <div className="sticky top-0 z-10 bg-white/95 backdrop-blur-md dark:bg-zinc-950/95 pb-3 pt-3 border-b border-zinc-200 dark:border-zinc-800">
+        <div className="space-y-3">
+          {/* Keyboard */}
+          <MyAlphabetPanel
+            entries={selectedEntries}
+            onRemove={handleRemove}
+            onClear={handleClear}
           />
 
-          {/* Script filter list */}
-          <FilterList
-            title="Scripts"
-            groupByActive={groupBy === "script"}
-            onGroupByToggle={() => setGroupBy("script")}
-            items={allScripts.map((s) => ({
-              id: s,
-              label: s,
-              count: getCharactersByScript(s).length,
-            }))}
-            selected={selectedScripts}
-            onToggle={toggleScript}
-          />
-        </aside>
+          {/* Mobile filters — two side-by-side fixed-height scroll lists */}
+          <div className="sm:hidden">
+            <MobileFilterBar
+              groupBy={groupBy}
+              setGroupBy={setGroupBy}
+              selectedSounds={selectedSounds}
+              toggleSound={toggleSound}
+              selectedScripts={selectedScripts}
+              toggleScript={toggleScript}
+            />
+          </div>
 
-        {/* Mobile filters */}
-        <div className="flex flex-col gap-3 sm:hidden w-full">
-          <MobileFilterBar
-            groupBy={groupBy}
-            setGroupBy={setGroupBy}
-            selectedSounds={selectedSounds}
-            toggleSound={toggleSound}
-            selectedScripts={selectedScripts}
-            toggleScript={toggleScript}
-          />
-
-          {/* Main content (mobile) */}
-          <MainContent
-            grouped={grouped}
-            groupBy={groupBy}
-            selections={selections}
-            onToggle={handleToggle}
-          />
-        </div>
-
-        {/* Main content (desktop) */}
-        <div className="hidden sm:block flex-1 min-w-0">
-          <MainContent
-            grouped={grouped}
-            groupBy={groupBy}
-            selections={selections}
-            onToggle={handleToggle}
-          />
+          {/* Desktop filters — inline */}
+          <div className="hidden sm:flex gap-4">
+            <FilterList
+              title="Sounds"
+              groupByActive={groupBy === "sound"}
+              onGroupByToggle={() => setGroupBy("sound")}
+              items={soundGroups.map((g) => ({
+                id: g.id,
+                label: g.label,
+                badge: g.ipa,
+                count: g.characters.length,
+              }))}
+              selected={selectedSounds}
+              onToggle={toggleSound}
+            />
+            <FilterList
+              title="Scripts"
+              groupByActive={groupBy === "script"}
+              onGroupByToggle={() => setGroupBy("script")}
+              items={allScripts.map((s) => ({
+                id: s,
+                label: s,
+                count: getCharactersByScript(s).length,
+              }))}
+              selected={selectedScripts}
+              onToggle={toggleScript}
+            />
+          </div>
         </div>
       </div>
 
+      {/* Main content — scrollable below the sticky pane */}
+      <div className="pt-4 pb-8">
+        <MainContent
+          grouped={grouped}
+          groupBy={groupBy}
+          selections={selections}
+          onToggle={handleToggle}
+        />
+      </div>
+
       {/* Footer */}
-      <footer className="border-t border-zinc-200 pt-6 text-center text-sm text-zinc-400 dark:border-zinc-800 dark:text-zinc-600">
+      <footer className="border-t border-zinc-200 pt-6 pb-8 text-center text-sm text-zinc-400 dark:border-zinc-800 dark:text-zinc-600">
         Alphabet Designer — {allScripts.length} writing systems
       </footer>
     </div>
@@ -263,11 +221,11 @@ function FilterList({
   onToggle,
 }: FilterListProps) {
   return (
-    <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
+    <div className="flex-1 rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
       {/* Header with group-by toggle */}
       <button
         onClick={onGroupByToggle}
-        className={`w-full flex items-center justify-between px-3 py-2.5 text-sm font-semibold transition-colors cursor-pointer ${
+        className={`w-full flex items-center justify-between px-3 py-2 text-xs font-semibold transition-colors cursor-pointer ${
           groupByActive
             ? "bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900"
             : "bg-zinc-50 text-zinc-700 hover:bg-zinc-100 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
@@ -279,8 +237,8 @@ function FilterList({
         </span>
       </button>
 
-      {/* Scrollable list */}
-      <div className="max-h-64 overflow-y-auto">
+      {/* Scrollable list — fixed height */}
+      <div className="h-48 overflow-y-auto">
         {/* All option */}
         <button
           onClick={() => {
@@ -346,63 +304,70 @@ function MobileFilterBar({
   toggleScript: (id: string) => void;
 }) {
   return (
-    <div className="space-y-3">
-      {/* Group by toggle */}
-      <div className="flex gap-1 rounded-lg border border-zinc-200 p-1 dark:border-zinc-700">
+    <div className="grid grid-cols-2 gap-2">
+      {/* Sound filter list */}
+      <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
         <button
           onClick={() => setGroupBy("sound")}
-          className={`flex-1 rounded-md px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer ${
+          className={`w-full flex items-center justify-between px-3 py-2 text-xs font-semibold transition-colors cursor-pointer ${
             groupBy === "sound"
               ? "bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900"
-              : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400"
+              : "bg-zinc-50 text-zinc-700 hover:bg-zinc-100 dark:bg-zinc-900 dark:text-zinc-300"
           }`}
         >
-          Group by Sound
+          <span>Sounds</span>
+          <span className="text-[9px] font-normal opacity-70">
+            {groupBy === "sound" ? "Grouped" : "Group by"}
+          </span>
         </button>
+        <div className="h-32 overflow-y-auto">
+          {soundGroups.map((g) => (
+            <button
+              key={g.id}
+              onClick={() => toggleSound(g.id)}
+              className={`w-full flex items-center justify-between px-2.5 py-1 text-[11px] transition-colors cursor-pointer ${
+                selectedSounds.has(g.id)
+                  ? "bg-zinc-100 font-medium text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100"
+                  : "text-zinc-500 hover:bg-zinc-50 dark:text-zinc-400 dark:hover:bg-zinc-900"
+              }`}
+            >
+              <span className="truncate">{g.label}</span>
+              <span className="font-mono text-[9px] opacity-50">{g.ipa}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Script filter list */}
+      <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
         <button
           onClick={() => setGroupBy("script")}
-          className={`flex-1 rounded-md px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer ${
+          className={`w-full flex items-center justify-between px-3 py-2 text-xs font-semibold transition-colors cursor-pointer ${
             groupBy === "script"
               ? "bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900"
-              : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400"
+              : "bg-zinc-50 text-zinc-700 hover:bg-zinc-100 dark:bg-zinc-900 dark:text-zinc-300"
           }`}
         >
-          Group by Script
+          <span>Scripts</span>
+          <span className="text-[9px] font-normal opacity-70">
+            {groupBy === "script" ? "Grouped" : "Group by"}
+          </span>
         </button>
-      </div>
-
-      {/* Horizontal scrollable sound pills */}
-      <div className="flex gap-1.5 overflow-x-auto pb-1">
-        {soundGroups.map((g) => (
-          <button
-            key={g.id}
-            onClick={() => toggleSound(g.id)}
-            className={`shrink-0 rounded-full px-2.5 py-1 text-[11px] font-medium transition-colors cursor-pointer border ${
-              selectedSounds.has(g.id)
-                ? "border-zinc-900 bg-zinc-900 text-white dark:border-zinc-100 dark:bg-zinc-100 dark:text-zinc-900"
-                : "border-zinc-200 text-zinc-500 dark:border-zinc-700 dark:text-zinc-400"
-            }`}
-          >
-            {g.ipa}
-          </button>
-        ))}
-      </div>
-
-      {/* Horizontal scrollable script pills */}
-      <div className="flex gap-1.5 overflow-x-auto pb-1">
-        {allScripts.map((s) => (
-          <button
-            key={s}
-            onClick={() => toggleScript(s)}
-            className={`shrink-0 rounded-full px-2.5 py-1 text-[11px] font-medium transition-colors cursor-pointer border ${
-              selectedScripts.has(s)
-                ? "border-zinc-900 bg-zinc-900 text-white dark:border-zinc-100 dark:bg-zinc-100 dark:text-zinc-900"
-                : "border-zinc-200 text-zinc-500 dark:border-zinc-700 dark:text-zinc-400"
-            }`}
-          >
-            {s}
-          </button>
-        ))}
+        <div className="h-32 overflow-y-auto">
+          {allScripts.map((s) => (
+            <button
+              key={s}
+              onClick={() => toggleScript(s)}
+              className={`w-full flex items-center justify-between px-2.5 py-1 text-[11px] transition-colors cursor-pointer ${
+                selectedScripts.has(s)
+                  ? "bg-zinc-100 font-medium text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100"
+                  : "text-zinc-500 hover:bg-zinc-50 dark:text-zinc-400 dark:hover:bg-zinc-900"
+              }`}
+            >
+              <span className="truncate">{s}</span>
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

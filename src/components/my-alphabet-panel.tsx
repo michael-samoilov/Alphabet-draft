@@ -18,34 +18,18 @@ interface MyAlphabetPanelProps {
   onClear: () => void;
 }
 
+/** Number of keys per row in the keyboard layout */
+const KEYS_PER_ROW = 10;
+
 /**
  * Arrange entries into keyboard-style staggered rows.
- * 10 keys per row (like QWERTY), each subsequent row offset slightly.
  */
 function arrangeAsKeyboard(entries: SelectedEntry[]): SelectedEntry[][] {
   const rows: SelectedEntry[][] = [];
-  const perRow = 10;
-  for (let i = 0; i < entries.length; i += perRow) {
-    rows.push(entries.slice(i, i + perRow));
+  for (let i = 0; i < entries.length; i += KEYS_PER_ROW) {
+    rows.push(entries.slice(i, i + KEYS_PER_ROW));
   }
   return rows;
-}
-
-/**
- * Compute a scale factor so the keyboard fits within a fixed max-height.
- * Base key size ~40px + gaps. We want the whole keyboard to fit in ~160px max height.
- */
-function getKeyScale(entryCount: number): { keySize: number; fontSize: number; gap: number } {
-  if (entryCount === 0) return { keySize: 40, fontSize: 18, gap: 4 };
-  const rows = Math.ceil(entryCount / 10);
-  // Max height budget: 160px on mobile, 180px on larger
-  const maxHeight = 160;
-  const availablePerRow = maxHeight / rows;
-  // Key size is the row height minus gap
-  const gap = Math.max(2, Math.min(4, availablePerRow * 0.1));
-  const keySize = Math.max(24, Math.min(44, availablePerRow - gap));
-  const fontSize = Math.max(10, Math.min(20, keySize * 0.5));
-  return { keySize, fontSize, gap };
 }
 
 export function MyAlphabetPanel({
@@ -74,10 +58,6 @@ export function MyAlphabetPanel({
   };
 
   const rows = useMemo(() => arrangeAsKeyboard(entries), [entries]);
-  const { keySize, fontSize, gap } = useMemo(
-    () => getKeyScale(entries.length),
-    [entries.length]
-  );
 
   if (entries.length === 0) {
     return (
@@ -115,20 +95,19 @@ export function MyAlphabetPanel({
         </div>
       </div>
 
-      {/* Keyboard layout */}
-      <div
-        className="flex flex-col items-center"
-        style={{ gap: `${gap}px` }}
-      >
+      {/* Keyboard layout — uses CSS grid so keys shrink to fit container */}
+      <div className="flex flex-col items-center gap-1 w-full overflow-hidden">
         {rows.map((row, rowIndex) => (
           <div
             key={rowIndex}
-            className="flex justify-center"
+            className="grid w-full"
             style={{
-              gap: `${gap}px`,
-              // Stagger odd rows like a keyboard
-              paddingLeft: rowIndex % 2 === 1 ? `${keySize * 0.3}px` : 0,
-              paddingRight: rowIndex % 2 === 1 ? `${keySize * 0.3}px` : 0,
+              /* Each row always has KEYS_PER_ROW columns; unfilled cells just stay empty */
+              gridTemplateColumns: `repeat(${KEYS_PER_ROW}, 1fr)`,
+              gap: "3px",
+              /* Stagger odd rows with padding (3% each side ≈ half a key offset) */
+              paddingLeft: rowIndex % 2 === 1 ? "3%" : 0,
+              paddingRight: rowIndex % 2 === 1 ? "3%" : 0,
             }}
           >
             {row.map(({ character, key }) => (
@@ -136,14 +115,9 @@ export function MyAlphabetPanel({
                 key={key}
                 onClick={() => onRemove(key)}
                 title={`${character.name} (${character.script}) — click to remove`}
-                className="group relative flex items-center justify-center rounded-lg border border-emerald-200 bg-emerald-50 transition-all hover:border-red-300 hover:bg-red-50 active:scale-95 dark:border-emerald-800 dark:bg-emerald-950 dark:hover:border-red-700 dark:hover:bg-red-950 cursor-pointer shadow-sm"
-                style={{
-                  width: `${keySize}px`,
-                  height: `${keySize}px`,
-                  fontSize: `${fontSize}px`,
-                }}
+                className="group relative flex items-center justify-center aspect-square rounded-lg border border-emerald-200 bg-emerald-50 text-sm leading-none transition-all hover:border-red-300 hover:bg-red-50 active:scale-95 dark:border-emerald-800 dark:bg-emerald-950 dark:hover:border-red-700 dark:hover:bg-red-950 cursor-pointer shadow-sm overflow-hidden"
               >
-                {character.char}
+                <span className="text-[clamp(10px,3.5vw,20px)]">{character.char}</span>
                 <div className="absolute -top-1 -right-1 hidden h-3.5 w-3.5 items-center justify-center rounded-full bg-red-500 text-[8px] text-white shadow group-hover:flex">
                   ✕
                 </div>
