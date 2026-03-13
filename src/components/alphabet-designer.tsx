@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import {
   soundGroups,
   allScripts,
@@ -28,6 +28,18 @@ export function AlphabetDesigner() {
   const [selectedScripts, setSelectedScripts] = useState<Set<string>>(
     new Set()
   );
+
+  const stickyRef = useRef<HTMLDivElement>(null);
+  const [stickyHeight, setStickyHeight] = useState(0);
+
+  useEffect(() => {
+    if (!stickyRef.current) return;
+    const observer = new ResizeObserver(([entry]) => {
+      setStickyHeight(entry.contentRect.height + 24); // include padding
+    });
+    observer.observe(stickyRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   const handleToggle = useCallback((_soundId: string, key: string) => {
     setSelections((prev) => {
@@ -131,7 +143,7 @@ export function AlphabetDesigner() {
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       {/* Sticky top pane: keyboard + filters (~40vh on mobile) */}
-      <div className="sticky top-0 z-10 bg-white/95 backdrop-blur-md dark:bg-zinc-950/95 pb-3 pt-3 border-b border-zinc-200 dark:border-zinc-800">
+      <div ref={stickyRef} className="sticky top-0 z-10 bg-white/95 backdrop-blur-md dark:bg-zinc-950/95 pb-3 pt-3 border-b border-zinc-200 dark:border-zinc-800">
         <div className="space-y-3">
           {/* Keyboard */}
           <MyAlphabetPanel
@@ -190,6 +202,7 @@ export function AlphabetDesigner() {
           groupBy={groupBy}
           selections={selections}
           onToggle={handleToggle}
+          stickyOffset={stickyHeight}
         />
       </div>
 
@@ -380,6 +393,7 @@ function MainContent({
   groupBy,
   selections,
   onToggle,
+  stickyOffset,
 }: {
   grouped: [
     string,
@@ -396,6 +410,7 @@ function MainContent({
   groupBy: GroupBy;
   selections: Record<string, boolean>;
   onToggle: (soundId: string, key: string) => void;
+  stickyOffset: number;
 }) {
   if (grouped.length === 0) {
     return (
@@ -411,7 +426,7 @@ function MainContent({
     <div className="space-y-8">
       {grouped.map(([key, { label, subtitle, items }]) => (
         <div key={key} className="space-y-3">
-          <div className="flex items-center gap-2">
+          <div className="sticky z-[5] flex items-center gap-2 bg-white/95 backdrop-blur-md dark:bg-zinc-950/95 py-2 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8" style={{ top: `${stickyOffset}px` }}>
             <h3 className="text-lg font-semibold tracking-tight">{label}</h3>
             {subtitle && (
               <Badge variant="secondary" className="font-mono text-xs">
