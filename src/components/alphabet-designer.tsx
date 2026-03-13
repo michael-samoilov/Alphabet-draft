@@ -192,6 +192,7 @@ export function AlphabetDesigner() {
               onToggle={toggleScript}
             />
           </div>
+
         </div>
       </div>
 
@@ -295,6 +296,15 @@ function FilterList({
           );
         })}
       </div>
+
+      {selected.size > 0 && (
+        <button
+          onClick={() => { for (const id of selected) onToggle(id); }}
+          className="w-full text-center text-[10px] text-zinc-400 hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300 py-1 border-t border-zinc-200 dark:border-zinc-800 transition-colors cursor-pointer"
+        >
+          Clear filters
+        </button>
+      )}
     </div>
   );
 }
@@ -352,6 +362,14 @@ function MobileFilterBar({
             </button>
           ))}
         </div>
+        {selectedSounds.size > 0 && (
+          <button
+            onClick={() => { for (const id of selectedSounds) toggleSound(id); }}
+            className="w-full text-center text-[9px] text-zinc-400 hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300 py-1 border-t border-zinc-200 dark:border-zinc-800 transition-colors cursor-pointer"
+          >
+            Clear filters
+          </button>
+        )}
       </div>
 
       {/* Script filter list */}
@@ -385,6 +403,14 @@ function MobileFilterBar({
             </button>
           ))}
         </div>
+        {selectedScripts.size > 0 && (
+          <button
+            onClick={() => { for (const id of selectedScripts) toggleScript(id); }}
+            className="w-full text-center text-[9px] text-zinc-400 hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300 py-1 border-t border-zinc-200 dark:border-zinc-800 transition-colors cursor-pointer"
+          >
+            Clear filters
+          </button>
+        )}
       </div>
     </div>
   );
