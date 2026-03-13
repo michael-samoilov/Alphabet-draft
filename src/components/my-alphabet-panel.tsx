@@ -179,7 +179,7 @@ function KeyboardKey({
       onPointerUp={onPointerUp}
       onPointerLeave={onPointerLeave}
       title={`${character.name} (${character.script}) — click to remove, long-press to copy`}
-      className="group relative flex items-center justify-center rounded-lg border border-emerald-200 bg-emerald-50 leading-none transition-all hover:border-red-300 hover:bg-red-50 active:scale-95 dark:border-emerald-800 dark:bg-emerald-950 dark:hover:border-red-700 dark:hover:bg-red-950 cursor-pointer shadow-sm overflow-hidden shrink-0 select-none"
+      className="group relative flex items-center justify-center rounded-lg border border-emerald-200 bg-emerald-50 leading-none transition-all hover:border-red-300 hover:bg-red-50 active:scale-95 dark:border-emerald-800 dark:bg-emerald-950 dark:hover:border-red-700 dark:hover:bg-red-950 cursor-pointer shadow-sm shrink-0 select-none"
       style={{ width: `${keySize}px`, height: `${keySize}px`, fontSize: `${fontSize}px` }}
     >
       {character.char}
@@ -187,8 +187,8 @@ function KeyboardKey({
         ✕
       </div>
       {copied && (
-        <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-black/70 text-[8px] font-medium text-white">
-          Copied
+        <div className="absolute -top-8 left-1/2 -translate-x-1/2 z-50 whitespace-nowrap rounded-md bg-black/90 px-2 py-1 text-[10px] font-semibold text-white shadow-lg pointer-events-none">
+          Copied!
         </div>
       )}
     </button>

@@ -1,16 +1,17 @@
 @import "tailwindcss";
 
 /*
- * Tengwar (Elvish) font — characters live in the Unicode Private Use Area
- * (CSUR mapping U+E000–E07F). Install a Tengwar font such as "Tengwar Annatar"
- * or "Tengwar Telcontar" and they will render automatically via this rule.
- * Without the font, browsers show placeholder boxes.
+ * Tengwar (Elvish) font — Alcarin Tengwar by Toshi Omagari (OFL 1.1).
+ * Characters live in the Unicode Private Use Area (CSUR U+E000–E07F).
+ * The bundled WOFF2 is loaded automatically; local installs are tried first.
  */
 @font-face {
   font-family: "Tengwar";
-  src: local("Tengwar Annatar"), local("Tengwar Telcontar"),
-       local("Tengwar Sindarin"), local("Tengwar Quenya");
+  src: local("Alcarin Tengwar"), local("Tengwar Annatar"),
+       local("Tengwar Telcontar"),
+       url("/fonts/AlcarinTengwar-Regular.woff2") format("woff2");
   unicode-range: U+E000-E07F;
+  font-display: swap;
 }
 
 :root {

@@ -76,7 +76,7 @@ export function CharacterCard({
         </div>
       )}
       {copied && (
-        <div className="absolute inset-0 flex items-center justify-center rounded-xl bg-black/70 text-xs font-medium text-white">
+        <div className="absolute -top-10 left-1/2 -translate-x-1/2 z-50 whitespace-nowrap rounded-lg bg-black/90 px-3 py-1.5 text-sm font-semibold text-white shadow-lg animate-bounce pointer-events-none">
           Copied!
         </div>
       )}
