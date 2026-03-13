@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import type { AlphabetChar, SoundGroup } from "@/data/alphabets";
@@ -18,13 +18,41 @@ interface MyAlphabetPanelProps {
   onClear: () => void;
 }
 
+/**
+ * Arrange entries into keyboard-style staggered rows.
+ * 10 keys per row (like QWERTY), each subsequent row offset slightly.
+ */
+function arrangeAsKeyboard(entries: SelectedEntry[]): SelectedEntry[][] {
+  const rows: SelectedEntry[][] = [];
+  const perRow = 10;
+  for (let i = 0; i < entries.length; i += perRow) {
+    rows.push(entries.slice(i, i + perRow));
+  }
+  return rows;
+}
+
+/**
+ * Compute a scale factor so the keyboard fits within a fixed max-height.
+ * Base key size ~40px + gaps. We want the whole keyboard to fit in ~160px max height.
+ */
+function getKeyScale(entryCount: number): { keySize: number; fontSize: number; gap: number } {
+  if (entryCount === 0) return { keySize: 40, fontSize: 18, gap: 4 };
+  const rows = Math.ceil(entryCount / 10);
+  // Max height budget: 160px on mobile, 180px on larger
+  const maxHeight = 160;
+  const availablePerRow = maxHeight / rows;
+  // Key size is the row height minus gap
+  const gap = Math.max(2, Math.min(4, availablePerRow * 0.1));
+  const keySize = Math.max(24, Math.min(44, availablePerRow - gap));
+  const fontSize = Math.max(10, Math.min(20, keySize * 0.5));
+  return { keySize, fontSize, gap };
+}
+
 export function MyAlphabetPanel({
   entries,
   onRemove,
   onClear,
 }: MyAlphabetPanelProps) {
-  const gridRef = useRef<HTMLDivElement>(null);
-
   const copyToClipboard = () => {
     const text = entries.map((e) => e.character.char).join(" ");
     navigator.clipboard.writeText(text);
@@ -32,7 +60,8 @@ export function MyAlphabetPanel({
 
   const downloadAsText = () => {
     const lines = entries.map(
-      (e) => `${e.character.char}\t${e.character.name}\t${e.character.script}\t${e.soundLabel}`
+      (e) =>
+        `${e.character.char}\t${e.character.name}\t${e.character.script}\t${e.soundLabel}`
     );
     const content = "Char\tName\tScript\tSound\n" + lines.join("\n");
     const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
@@ -44,70 +73,83 @@ export function MyAlphabetPanel({
     URL.revokeObjectURL(url);
   };
 
-  // Count by script
-  const scriptCounts = new Map<string, number>();
-  for (const e of entries) {
-    scriptCounts.set(
-      e.character.script,
-      (scriptCounts.get(e.character.script) || 0) + 1
-    );
-  }
+  const rows = useMemo(() => arrangeAsKeyboard(entries), [entries]);
+  const { keySize, fontSize, gap } = useMemo(
+    () => getKeyScale(entries.length),
+    [entries.length]
+  );
 
   if (entries.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-zinc-300 p-8 text-center dark:border-zinc-700">
-        <p className="text-lg font-medium text-zinc-400 dark:text-zinc-500">
+      <div className="flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-zinc-300 py-4 text-center dark:border-zinc-700">
+        <p className="text-sm font-medium text-zinc-400 dark:text-zinc-500">
           Your alphabet is empty
         </p>
-        <p className="mt-1 text-sm text-zinc-400 dark:text-zinc-600">
-          Click on characters above to start building your custom alphabet
+        <p className="mt-0.5 text-xs text-zinc-400 dark:text-zinc-600">
+          Click on characters to start building
         </p>
       </div>
     );
   }
 
   return (
-    <div className="space-y-4">
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <div className="flex flex-wrap items-center gap-2">
-          <h2 className="text-xl font-bold">My Alphabet</h2>
-          <Badge variant="secondary">{entries.length} characters</Badge>
-          {Array.from(scriptCounts.entries()).map(([script, count]) => (
-            <Badge key={script} variant="outline" className="text-[10px]">
-              {script}: {count}
-            </Badge>
-          ))}
+    <div className="space-y-2">
+      {/* Header row */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <h2 className="text-sm font-bold sm:text-base">My Alphabet</h2>
+          <Badge variant="secondary" className="text-[10px]">
+            {entries.length}
+          </Badge>
         </div>
         <div className="flex gap-1">
-          <Button variant="outline" size="sm" onClick={copyToClipboard}>
+          <Button variant="outline" size="sm" className="h-7 text-xs px-2" onClick={copyToClipboard}>
             Copy
           </Button>
-          <Button variant="outline" size="sm" onClick={downloadAsText}>
+          <Button variant="outline" size="sm" className="h-7 text-xs px-2" onClick={downloadAsText}>
             Export
           </Button>
-          <Button variant="ghost" size="sm" onClick={onClear}>
+          <Button variant="ghost" size="sm" className="h-7 text-xs px-2" onClick={onClear}>
             Clear
           </Button>
         </div>
       </div>
-      <div ref={gridRef} className="flex flex-wrap gap-3">
-        {entries.map(({ character, key, soundLabel }) => (
-          <button
-            key={key}
-            onClick={() => onRemove(key)}
-            className="group relative flex flex-col items-center gap-0.5 rounded-xl border-2 border-emerald-200 bg-emerald-50 p-3 transition-all hover:border-red-300 hover:bg-red-50 dark:border-emerald-800 dark:bg-emerald-950 dark:hover:border-red-700 dark:hover:bg-red-950 min-w-[72px] cursor-pointer"
+
+      {/* Keyboard layout */}
+      <div
+        className="flex flex-col items-center"
+        style={{ gap: `${gap}px` }}
+      >
+        {rows.map((row, rowIndex) => (
+          <div
+            key={rowIndex}
+            className="flex justify-center"
+            style={{
+              gap: `${gap}px`,
+              // Stagger odd rows like a keyboard
+              paddingLeft: rowIndex % 2 === 1 ? `${keySize * 0.3}px` : 0,
+              paddingRight: rowIndex % 2 === 1 ? `${keySize * 0.3}px` : 0,
+            }}
           >
-            <span className="text-2xl leading-none">{character.char}</span>
-            <span className="text-[9px] text-zinc-500 dark:text-zinc-400">
-              {character.name}
-            </span>
-            <span className="text-[8px] text-zinc-400 dark:text-zinc-500">
-              {soundLabel}
-            </span>
-            <div className="absolute -top-1.5 -right-1.5 hidden h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] text-white shadow group-hover:flex">
-              ✕
-            </div>
-          </button>
+            {row.map(({ character, key }) => (
+              <button
+                key={key}
+                onClick={() => onRemove(key)}
+                title={`${character.name} (${character.script}) — click to remove`}
+                className="group relative flex items-center justify-center rounded-lg border border-emerald-200 bg-emerald-50 transition-all hover:border-red-300 hover:bg-red-50 active:scale-95 dark:border-emerald-800 dark:bg-emerald-950 dark:hover:border-red-700 dark:hover:bg-red-950 cursor-pointer shadow-sm"
+                style={{
+                  width: `${keySize}px`,
+                  height: `${keySize}px`,
+                  fontSize: `${fontSize}px`,
+                }}
+              >
+                {character.char}
+                <div className="absolute -top-1 -right-1 hidden h-3.5 w-3.5 items-center justify-center rounded-full bg-red-500 text-[8px] text-white shadow group-hover:flex">
+                  ✕
+                </div>
+              </button>
+            ))}
+          </div>
         ))}
       </div>
     </div>
