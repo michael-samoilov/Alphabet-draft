@@ -4,6 +4,7 @@ import { useMemo, useCallback, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useLongPress } from "@/hooks/use-long-press";
+import { TengwarGlyph, isTengwar } from "@/components/tengwar-glyph";
 import type { AlphabetChar, SoundGroup } from "@/data/alphabets";
 
 export interface SelectedEntry {
@@ -182,7 +183,11 @@ function KeyboardKey({
       className="group relative flex items-center justify-center rounded-lg border border-emerald-200 bg-emerald-50 leading-none transition-all hover:border-red-300 hover:bg-red-50 active:scale-95 dark:border-emerald-800 dark:bg-emerald-950 dark:hover:border-red-700 dark:hover:bg-red-950 cursor-pointer shadow-sm shrink-0 select-none"
       style={{ width: `${keySize}px`, height: `${keySize}px`, fontSize: `${fontSize}px` }}
     >
-      {character.char}
+      {isTengwar(character.char) ? (
+        <TengwarGlyph char={character.char} size={`${fontSize}px`} />
+      ) : (
+        character.char
+      )}
       <div className="absolute -top-1 -right-1 hidden h-3.5 w-3.5 items-center justify-center rounded-full bg-red-500 text-[8px] text-white shadow group-hover:flex">
         ✕
       </div>

@@ -4,6 +4,7 @@ import { useCallback, useState } from "react";
 import { cn } from "@/lib/utils";
 import type { AlphabetChar } from "@/data/alphabets";
 import { useLongPress } from "@/hooks/use-long-press";
+import { TengwarGlyph, isTengwar } from "@/components/tengwar-glyph";
 
 interface CharacterCardProps {
   character: AlphabetChar;
@@ -49,7 +50,11 @@ export function CharacterCard({
           : "border-zinc-200 bg-white hover:border-zinc-400 hover:shadow-md dark:border-zinc-700 dark:bg-zinc-900 dark:hover:border-zinc-500"
       )}
     >
-      <span className="text-3xl leading-none font-normal">{character.char}</span>
+      {isTengwar(character.char) ? (
+        <TengwarGlyph char={character.char} className="text-3xl leading-none" size="1.875rem" />
+      ) : (
+        <span className="text-3xl leading-none font-normal">{character.char}</span>
+      )}
       <span
         className={cn(
           "text-[10px] font-medium leading-tight",

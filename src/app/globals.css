@@ -1,19 +1,5 @@
 @import "tailwindcss";
 
-/*
- * Tengwar (Elvish) font — Alcarin Tengwar by Toshi Omagari (OFL 1.1).
- * Characters live in the Unicode Private Use Area (CSUR U+E000–E07F).
- * The bundled WOFF2 is loaded automatically; local installs are tried first.
- */
-@font-face {
-  font-family: "Tengwar";
-  src: local("Alcarin Tengwar"), local("Tengwar Annatar"),
-       local("Tengwar Telcontar"),
-       url("/fonts/AlcarinTengwar-Regular.woff2") format("woff2");
-  unicode-range: U+E000-E07F;
-  font-display: swap;
-}
-
 :root {
   --background: #fafafa;
   --foreground: #0a0a0a;
@@ -22,8 +8,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: "Tengwar", ui-sans-serif, system-ui, -apple-system,
-    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
     "Liberation Mono", monospace;
 }
