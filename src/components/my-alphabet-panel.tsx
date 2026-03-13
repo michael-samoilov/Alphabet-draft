@@ -59,18 +59,12 @@ export function MyAlphabetPanel({
 
   const rows = useMemo(() => arrangeAsKeyboard(entries), [entries]);
 
-  if (entries.length === 0) {
-    return (
-      <div className="flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-zinc-300 py-4 text-center dark:border-zinc-700">
-        <p className="text-sm font-medium text-zinc-400 dark:text-zinc-500">
-          Your alphabet is empty
-        </p>
-        <p className="mt-0.5 text-xs text-zinc-400 dark:text-zinc-600">
-          Click on characters to start building
-        </p>
-      </div>
-    );
-  }
+  // Fixed keyboard height (in px). Keys shrink to fit.
+  const KEYBOARD_HEIGHT = 140;
+  const numRows = rows.length || 1;
+  const gap = 3;
+  const keyHeight = Math.max(16, (KEYBOARD_HEIGHT - gap * (numRows - 1)) / numRows);
+  const fontSize = Math.max(8, Math.min(18, keyHeight * 0.55));
 
   return (
     <div className="space-y-2">
@@ -95,36 +89,48 @@ export function MyAlphabetPanel({
         </div>
       </div>
 
-      {/* Keyboard layout — uses CSS grid so keys shrink to fit container */}
-      <div className="flex flex-col items-center gap-1 w-full overflow-hidden">
-        {rows.map((row, rowIndex) => (
-          <div
-            key={rowIndex}
-            className="grid w-full"
-            style={{
-              /* Each row always has KEYS_PER_ROW columns; unfilled cells just stay empty */
-              gridTemplateColumns: `repeat(${KEYS_PER_ROW}, 1fr)`,
-              gap: "3px",
-              /* Stagger odd rows with padding (3% each side ≈ half a key offset) */
-              paddingLeft: rowIndex % 2 === 1 ? "3%" : 0,
-              paddingRight: rowIndex % 2 === 1 ? "3%" : 0,
-            }}
-          >
-            {row.map(({ character, key }) => (
-              <button
-                key={key}
-                onClick={() => onRemove(key)}
-                title={`${character.name} (${character.script}) — click to remove`}
-                className="group relative flex items-center justify-center aspect-square rounded-lg border border-emerald-200 bg-emerald-50 text-sm leading-none transition-all hover:border-red-300 hover:bg-red-50 active:scale-95 dark:border-emerald-800 dark:bg-emerald-950 dark:hover:border-red-700 dark:hover:bg-red-950 cursor-pointer shadow-sm overflow-hidden"
-              >
-                <span className="text-[clamp(10px,3.5vw,20px)]">{character.char}</span>
-                <div className="absolute -top-1 -right-1 hidden h-3.5 w-3.5 items-center justify-center rounded-full bg-red-500 text-[8px] text-white shadow group-hover:flex">
-                  ✕
-                </div>
-              </button>
-            ))}
+      {/* Keyboard — fixed height container, keys shrink to fit */}
+      <div
+        className="flex flex-col items-center w-full overflow-hidden"
+        style={{ height: `${KEYBOARD_HEIGHT}px`, gap: `${gap}px` }}
+      >
+        {entries.length === 0 ? (
+          <div className="flex items-center justify-center h-full w-full rounded-xl border-2 border-dashed border-zinc-300 dark:border-zinc-700">
+            <p className="text-xs text-zinc-400 dark:text-zinc-500">
+              Click on characters to start building
+            </p>
           </div>
-        ))}
+        ) : (
+          rows.map((row, rowIndex) => (
+            <div
+              key={rowIndex}
+              className="grid w-full"
+              style={{
+                gridTemplateColumns: `repeat(${KEYS_PER_ROW}, 1fr)`,
+                gap: `${gap}px`,
+                paddingLeft: rowIndex % 2 === 1 ? "3%" : 0,
+                paddingRight: rowIndex % 2 === 1 ? "3%" : 0,
+                height: `${keyHeight}px`,
+                minHeight: 0,
+              }}
+            >
+              {row.map(({ character, key }) => (
+                <button
+                  key={key}
+                  onClick={() => onRemove(key)}
+                  title={`${character.name} (${character.script}) — click to remove`}
+                  className="group relative flex items-center justify-center rounded-lg border border-emerald-200 bg-emerald-50 leading-none transition-all hover:border-red-300 hover:bg-red-50 active:scale-95 dark:border-emerald-800 dark:bg-emerald-950 dark:hover:border-red-700 dark:hover:bg-red-950 cursor-pointer shadow-sm overflow-hidden w-full h-full"
+                  style={{ fontSize: `${fontSize}px` }}
+                >
+                  {character.char}
+                  <div className="absolute -top-1 -right-1 hidden h-3.5 w-3.5 items-center justify-center rounded-full bg-red-500 text-[8px] text-white shadow group-hover:flex">
+                    ✕
+                  </div>
+                </button>
+              ))}
+            </div>
+          ))
+        )}
       </div>
     </div>
   );
