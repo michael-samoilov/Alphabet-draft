@@ -15,6 +15,7 @@ import {
 } from "@/components/my-alphabet-panel";
 import { Badge } from "@/components/ui/badge";
 import { useLocalStorage } from "@/hooks/use-local-storage";
+import { speakIpa } from "@/hooks/use-ipa-audio";
 
 type GroupBy = "sound" | "script";
 
@@ -466,9 +467,16 @@ function MainContent({
           <div className="sticky z-[5] flex items-center gap-2 bg-white/95 backdrop-blur-md dark:bg-zinc-950/95 py-2 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8" style={{ top: `${stickyOffset}px` }}>
             <h3 className="text-lg font-semibold tracking-tight">{label}</h3>
             {subtitle && (
-              <Badge variant="secondary" className="font-mono text-xs">
-                {subtitle}
-              </Badge>
+              <button
+                onClick={() => speakIpa(subtitle)}
+                title="Listen to this sound"
+                className="inline-flex items-center gap-1 cursor-pointer hover:opacity-70 transition-opacity"
+              >
+                <Badge variant="secondary" className="font-mono text-xs">
+                  {subtitle}
+                </Badge>
+                <span className="text-zinc-400 text-xs">&#9654;</span>
+              </button>
             )}
             <Badge variant="outline" className="text-[10px]">
               {items.length}

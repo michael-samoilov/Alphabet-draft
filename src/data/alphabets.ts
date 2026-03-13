@@ -42,6 +42,8 @@ export const soundGroups: SoundGroup[] = [
       c("Ꭷ", "Ka", "Cherokee", "ka"),
       c("ა", "Ani", "Georgian", "a"),
       c("អ", "A", "Khmer", "ʔa"),
+      c("ឰ", "Ai", "Khmer", "ai"),
+      c("ឳ", "Au", "Khmer", "au"),
       c("อ", "O Ang", "Thai", "ʔ"),
       c("ᠠ", "A", "Mongolian", "a"),
       c("Ա", "Ayb", "Armenian", "a"),
@@ -50,23 +52,44 @@ export const soundGroups: SoundGroup[] = [
       c("ᚨ", "Ansuz", "Elder Futhark", "a"),
       c("ꦄ", "A", "Javanese", "a"),
       c("ᬅ", "A", "Balinese", "a"),
+      c("ᬆ", "Aa", "Balinese", "aː"),
       c("Ⰰ", "Az", "Glagolitic", "a"),
       c("Ä", "A-umlaut", "Latin Extended", "ɛ"),
       c("Å", "A-ring", "Latin Extended", "oː"),
       c("Æ", "Ash", "Latin Extended", "æ"),
       c("Ă", "A-breve", "Latin Extended", "ə"),
+      c("Ⱎ", "Yer", "Glagolitic", "ŭ"),
+      c("Æ", "Ae", "Icelandic", "ai"),
+      c("Á", "A-acute", "Icelandic", "au"),
+      c("Ą", "A-ogonek", "Latin Extended", "ɔ̃"),
 
-      c("Ꭰ", "A", "Cherokee", "a"),
       c("Ꭵ", "V", "Cherokee", "ə̃"),
       c("Ъ", "Hard Sign", "Cyrillic", "–"),
-      c("ᚨ", "Ansuz", "Elder Futhark", "a"),
-      c("อ", "O Ang", "Thai", "ʔ"),
-      c("Ⲁ", "Alpha", "Coptic", "a"),
       c("አ", "A", "Ethiopic", "ʔ"),
       c("ዐ", "Ayin", "Ethiopic", "ʕ"),
-      c("ⴰ", "Ya", "Tifinagh", "a"),
       c("ⵄ", "Yaa", "Tifinagh", "ʕ"),
-      c("ᠠ", "A", "Mongolian", "a")
+
+      // Tamil
+      c("அ", "A", "Tamil", "a"),
+      c("ஆ", "Aa", "Tamil", "aː"),
+      c("ஐ", "Ai", "Tamil", "ai"),
+      c("ஔ", "Au", "Tamil", "au"),
+      // Myanmar
+      c("အ", "A", "Myanmar", "a"),
+      // Tibetan
+      c("འ", "A", "Tibetan", "a"),
+      c("ཨ", "A", "Tibetan", "a"),
+      // Syriac
+      c("ܐ", "Alaph", "Syriac", "ʔ"),
+      // Lao
+      c("ອ", "O", "Lao", "ʔ"),
+      // Sinhala
+      c("අ", "A", "Sinhala", "a"),
+      c("ආ", "Aa", "Sinhala", "aː"),
+      c("ඇ", "Ae", "Sinhala", "æ"),
+      c("ඈ", "Aee", "Sinhala", "æː"),
+      // N'Ko
+      c("ߊ", "A", "N'Ko", "a")
     ],
   },
   {
@@ -94,19 +117,36 @@ export const soundGroups: SoundGroup[] = [
       c("เ", "Sara E", "Thai", "eː"),
       c("แ", "Sara Ae", "Thai", "ɛː"),
       c("ᠡ", "E", "Mongolian", "e"),
+      c("ᬏ", "E", "Balinese", "e"),
+      c("ᬐ", "Ai", "Balinese", "ai"),
+      c("ꦌ", "E", "Javanese", "e"),
       c("Ⰵ", "Yest", "Glagolitic", "e"),
       c("É", "E-acute", "Latin Extended", "e"),
       c("È", "E-grave", "Latin Extended", "ɛ"),
       c("Ê", "E-circumflex", "Latin Extended", "ɛ"),
       c("Ë", "E-diaeresis", "Latin Extended", "e"),
+      c("Ę", "E-ogonek", "Latin Extended", "ɛ̃"),
 
-      c("Ꭱ", "E", "Cherokee", "e"),
       c("Ᏸ", "Ye", "Cherokee", "je"),
       c("ᛖ", "Ehwaz", "Elder Futhark", "e"),
-      c("Ⲉ", "Ei", "Coptic", "e/i"),
       c("ⴻ", "Yey", "Tifinagh", "e"),
-      c("ᠡ", "E", "Mongolian", "e"),
-      c("ᠧ", "Ee", "Mongolian", "eː")
+      c("ᠧ", "Ee", "Mongolian", "eː"),
+
+      // Tamil
+      c("எ", "E", "Tamil", "e"),
+      c("ஏ", "Ee", "Tamil", "eː"),
+      // Sinhala
+      c("එ", "E", "Sinhala", "e"),
+      c("ඒ", "Ee", "Sinhala", "eː"),
+      // N'Ko
+      c("ߋ", "E", "N'Ko", "e"),
+      c("ߍ", "Ee", "N'Ko", "eː"),
+      // Syriac
+      c("ܥ", "E", "Syriac", "ʕ"),
+      // Khmer
+      c("ឯ", "E", "Khmer", "e"),
+      // Icelandic
+      c("É", "E-acute", "Icelandic", "jɛ"),
     ],
   },
   {
@@ -129,19 +169,38 @@ export const soundGroups: SoundGroup[] = [
       c("ი", "Ini", "Georgian", "i"),
       c("Ի", "Ini", "Armenian", "i"),
       c("ᠢ", "I", "Mongolian", "i"),
+      c("ᬇ", "I", "Balinese", "i"),
+      c("ᬈ", "Ii", "Balinese", "iː"),
+      c("ꦆ", "I", "Javanese", "i"),
       c("Ⰻ", "Izhe", "Glagolitic", "i"),
+      c("Ⰹ", "Izhe (alt)", "Glagolitic", "i"),
+      c("Ⰺ", "I", "Glagolitic", "i"),
+      c("Ⱏ", "Yeri", "Glagolitic", "ɨ"),
+      c("Ⱐ", "Yerj", "Glagolitic", "ĭ"),
       c("Í", "I-acute", "Latin Extended", "i"),
       c("Î", "I-circumflex", "Latin Extended", "i"),
       c("Ï", "I-diaeresis", "Latin Extended", "i"),
 
-      c("Ꭲ", "I", "Cherokee", "i"),
       c("Ь", "Soft Sign", "Cyrillic", "ʲ"),
       c("ᛁ", "Isaz", "Elder Futhark", "i"),
       c("ᛇ", "Eihwaz", "Elder Futhark", "iː"),
       c("Ⲏ", "Hori", "Coptic", "iː"),
-      c("Ⲓ", "Iota", "Coptic", "i"),
       c("ⵉ", "Yi", "Tifinagh", "i"),
-      c("ᠢ", "I", "Mongolian", "i")
+
+      // Tamil
+      c("இ", "I", "Tamil", "i"),
+      c("ஈ", "Ii", "Tamil", "iː"),
+      // Sinhala
+      c("ඉ", "I", "Sinhala", "i"),
+      c("ඊ", "Ii", "Sinhala", "iː"),
+      // N'Ko
+      c("ߌ", "I", "N'Ko", "i"),
+      // Khmer
+      c("ឥ", "I", "Khmer", "i"),
+      c("ឦ", "Ii", "Khmer", "iː"),
+      // Icelandic
+      c("Í", "I-acute", "Icelandic", "i"),
+      c("Ý", "Y-acute", "Icelandic", "i"),
     ],
   },
   {
@@ -165,16 +224,35 @@ export const soundGroups: SoundGroup[] = [
       c("Ո", "Vo", "Armenian", "vo"),
       c("โ", "Sara O", "Thai", "oː"),
       c("ᠣ", "O", "Mongolian", "o"),
+      c("ᬑ", "O", "Balinese", "o"),
+      c("ᬒ", "Au", "Balinese", "au"),
+      c("ꦎ", "O", "Javanese", "o"),
+      c("Ⱁ", "On", "Glagolitic", "o"),
+      c("Ⱉ", "Otu", "Glagolitic", "ɔ"),
       c("Ö", "O-umlaut", "Latin Extended", "ø"),
       c("Ø", "O-slash", "Latin Extended", "ø"),
       c("Ô", "O-circumflex", "Latin Extended", "o"),
+      c("Ő", "O-double-acute", "Latin Extended", "øː"),
+      c("Ö", "O-umlaut", "Icelandic", "œ"),
 
-      c("Ꭳ", "O", "Cherokee", "o"),
       c("ᛟ", "Othala", "Elder Futhark", "o"),
       c("Ⲟ", "O", "Coptic", "o"),
       c("Ⲱ", "Oou", "Coptic", "oː"),
-      c("ᠣ", "O", "Mongolian", "o"),
-      c("ᠥ", "Oe", "Mongolian", "ø")
+      c("ᠥ", "Oe", "Mongolian", "ø"),
+
+      // Tamil
+      c("ஒ", "O", "Tamil", "o"),
+      c("ஓ", "Oo", "Tamil", "oː"),
+      // Sinhala
+      c("ඔ", "O", "Sinhala", "o"),
+      c("ඕ", "Oo", "Sinhala", "oː"),
+      // N'Ko
+      c("ߏ", "O", "N'Ko", "o"),
+      c("ߐ", "O (long)", "N'Ko", "oː"),
+      // Khmer
+      c("ឱ", "O", "Khmer", "o"),
+      // Icelandic
+      c("Ó", "O-acute", "Icelandic", "ou"),
     ],
   },
   {
@@ -196,15 +274,31 @@ export const soundGroups: SoundGroup[] = [
       c("Ու", "U", "Armenian", "u"),
       c("ᠤ", "U", "Mongolian", "u"),
       c("ᠦ", "Ue", "Mongolian", "y"),
+      c("ᬉ", "U", "Balinese", "u"),
+      c("ᬊ", "Uu", "Balinese", "uː"),
+      c("ꦈ", "U", "Javanese", "u"),
+      c("Ⱆ", "Uk", "Glagolitic", "u"),
       c("Ü", "U-umlaut", "Latin Extended", "y"),
       c("Ù", "U-grave", "Latin Extended", "u"),
       c("Û", "U-circumflex", "Latin Extended", "u"),
+      c("Ű", "U-double-acute", "Latin Extended", "yː"),
 
-      c("Ꭴ", "U", "Cherokee", "u"),
       c("ᚢ", "Uruz", "Elder Futhark", "u"),
       c("Ⲩ", "He", "Coptic", "w/u"),
-      c("ᠤ", "U", "Mongolian", "u"),
-      c("ᠦ", "Ue", "Mongolian", "y")
+
+      // Tamil
+      c("உ", "U", "Tamil", "u"),
+      c("ஊ", "Uu", "Tamil", "uː"),
+      // Sinhala
+      c("උ", "U", "Sinhala", "u"),
+      c("ඌ", "Uu", "Sinhala", "uː"),
+      // N'Ko
+      c("ߎ", "U", "N'Ko", "u"),
+      // Khmer
+      c("ឧ", "U", "Khmer", "u"),
+      c("ឩ", "Uu", "Khmer", "uː"),
+      // Icelandic
+      c("Ú", "U-acute", "Icelandic", "u"),
     ],
   },
   // ═══════════════════════════════════════════════════════
@@ -228,13 +322,27 @@ export const soundGroups: SoundGroup[] = [
       c("ⴱ", "Yab", "Tifinagh", "b"),
       c("በ", "Be", "Ethiopic", "b"),
       c("ᛒ", "Berkanan", "Elder Futhark", "b"),
+      c("ᬩ", "Ba", "Balinese", "b"),
+      c("ᬪ", "Bha", "Balinese", "bʱ"),
+      c("ꦧ", "Ba", "Javanese", "b"),
+      c("ꦨ", "Bha", "Javanese", "bʱ"),
       c("Ⰱ", "Buky", "Glagolitic", "b"),
 
-      c("ᛒ", "Berkanan", "Elder Futhark", "b"),
-      c("บ", "Bo Baimai", "Thai", "b"),
-      c("በ", "Be", "Ethiopic", "b"),
-      c("ⴱ", "Yab", "Tifinagh", "b"),
-      c("ᠪ", "Ba", "Mongolian", "b")
+
+      // Myanmar
+      c("ဗ", "Ba", "Myanmar", "b"),
+      c("ဘ", "Bha", "Myanmar", "bʱ"),
+      // Tibetan
+      c("བ", "Ba", "Tibetan", "b"),
+      // Syriac
+      c("ܒ", "Beth", "Syriac", "b"),
+      // Lao
+      c("ບ", "Bo", "Lao", "b"),
+      // Sinhala
+      c("බ", "Ba", "Sinhala", "b"),
+      c("භ", "Bha", "Sinhala", "bʱ"),
+      // N'Ko
+      c("ߓ", "Ba", "N'Ko", "b")
     ],
   },
   {
@@ -255,6 +363,10 @@ export const soundGroups: SoundGroup[] = [
       c("ⴳ", "Yag", "Tifinagh", "ɡ"),
       c("ገ", "Ge", "Ethiopic", "ɡ"),
       c("ᚷ", "Gebo", "Elder Futhark", "ɡ"),
+      c("ᬕ", "Ga", "Balinese", "ɡ"),
+      c("ᬖ", "Gha", "Balinese", "ɡʱ"),
+      c("ꦒ", "Ga", "Javanese", "ɡ"),
+      c("ꦓ", "Gha", "Javanese", "ɡʱ"),
       c("Ⰳ", "Glagoli", "Glagolitic", "ɡ"),
 
       c("Ꭶ", "Ga", "Cherokee", "ga"),
@@ -265,13 +377,20 @@ export const soundGroups: SoundGroup[] = [
       c("Ꭼ", "Gv", "Cherokee", "gə̃"),
       c("ღ", "Ghani", "Georgian", "ɣ"),
       c("Ղ", "Ghat", "Armenian", "ɣ"),
-      c("Ղ", "Ghat", "Armenian", "ɣ"),
-      c("ᚷ", "Gebo", "Elder Futhark", "ɡ"),
-      c("Ⲅ", "Gamma", "Coptic", "ɡ"),
-      c("ገ", "Ge", "Ethiopic", "ɡ"),
-      c("ⴳ", "Yag", "Tifinagh", "ɡ"),
       c("ⵖ", "Yagh", "Tifinagh", "ɣ"),
-      c("ᠭ", "Ga", "Mongolian", "ɡ")
+
+      // Myanmar
+      c("ဂ", "Ga", "Myanmar", "ɡ"),
+      c("ဃ", "Gha", "Myanmar", "ɡʱ"),
+      // Tibetan
+      c("ག", "Ga", "Tibetan", "ɡ"),
+      // Syriac
+      c("ܓ", "Gamal", "Syriac", "ɡ"),
+      // Sinhala
+      c("ග", "Ga", "Sinhala", "ɡ"),
+      c("ඝ", "Gha", "Sinhala", "ɡʱ"),
+      // N'Ko
+      c("ߜ", "Gba", "N'Ko", "ɡb")
     ],
   },
   {
@@ -293,6 +412,14 @@ export const soundGroups: SoundGroup[] = [
       c("ⴷ", "Yad", "Tifinagh", "d"),
       c("ደ", "De", "Ethiopic", "d"),
       c("ᛞ", "Dagaz", "Elder Futhark", "d"),
+      c("ᬤ", "Da", "Balinese", "d"),
+      c("ᬥ", "Dha", "Balinese", "dʱ"),
+      c("ᬟ", "Da (retroflex)", "Balinese", "ɖ"),
+      c("ᬠ", "Dha (retroflex)", "Balinese", "ɖʱ"),
+      c("ꦢ", "Da", "Javanese", "d"),
+      c("ꦣ", "Dha", "Javanese", "dʱ"),
+      c("ꦝ", "Da (retroflex)", "Javanese", "ɖ"),
+      c("ꦞ", "Dha (retroflex)", "Javanese", "ɖʱ"),
       c("Ⰴ", "Dobro", "Glagolitic", "d"),
 
       c("Ꮣ", "Da", "Cherokee", "da"),
@@ -301,14 +428,31 @@ export const soundGroups: SoundGroup[] = [
       c("Ꮩ", "Do", "Cherokee", "do"),
       c("Ꮪ", "Du", "Cherokee", "du"),
       c("Ꮫ", "Dv", "Cherokee", "də̃"),
-      c("ᛞ", "Dagaz", "Elder Futhark", "d"),
       c("ฎ", "Do Chada", "Thai", "d"),
-      c("ด", "Do Dek", "Thai", "d"),
-      c("Ⲇ", "Dalda", "Coptic", "d"),
-      c("ደ", "De", "Ethiopic", "d"),
-      c("ⴷ", "Yad", "Tifinagh", "d"),
       c("ⴹ", "Yadd", "Tifinagh", "dˤ"),
-      c("ᠳ", "Da", "Mongolian", "d")
+
+      // Myanmar
+      c("ဍ", "Da", "Myanmar", "d"),
+      c("ဎ", "Dha", "Myanmar", "dʱ"),
+      c("ဒ", "Da", "Myanmar", "d"),
+      c("ဓ", "Dha", "Myanmar", "dʱ"),
+      // Tibetan
+      c("ད", "Da", "Tibetan", "d"),
+      // Syriac
+      c("ܕ", "Dalath", "Syriac", "d"),
+      // Lao
+      c("ດ", "Do", "Lao", "d"),
+      // Sinhala
+      c("ඩ", "Da", "Sinhala", "d"),
+      c("ඪ", "Dha", "Sinhala", "dʱ"),
+      c("ද", "Da", "Sinhala", "d"),
+      c("ධ", "Dha", "Sinhala", "dʱ"),
+      // N'Ko
+      c("ߘ", "Da", "N'Ko", "d"),
+      // Khmer
+      c("ដ", "Da", "Khmer", "d"),
+      c("ឌ", "Do", "Khmer", "d"),
+      c("ឍ", "Dho", "Khmer", "dʱ"),
     ],
   },
   {
@@ -332,6 +476,12 @@ export const soundGroups: SoundGroup[] = [
       c("ᠬ", "Ka", "Mongolian", "k"),
       c("ⴽ", "Yak", "Tifinagh", "k"),
       c("ከ", "Ka", "Ethiopic", "k"),
+      c("ᬓ", "Ka", "Balinese", "k"),
+      c("ᬔ", "Kha", "Balinese", "kʰ"),
+      c("ꦏ", "Ka", "Javanese", "k"),
+      c("ꦐ", "Ka (Kawi)", "Javanese", "k"),
+      c("ꦑ", "Kha", "Javanese", "kʰ"),
+      c("Ⰽ", "Kako", "Glagolitic", "k"),
       c("ᚲ", "Kaunan", "Elder Futhark", "k"),
 
       c("Ꮖ", "Qua", "Cherokee", "kʷa"),
@@ -340,13 +490,28 @@ export const soundGroups: SoundGroup[] = [
       c("Ꮙ", "Quo", "Cherokee", "kʷo"),
       c("Ꮚ", "Quu", "Cherokee", "kʷu"),
       c("Ꮛ", "Quv", "Cherokee", "kʷə̃"),
-      c("ᚲ", "Kaunan", "Elder Futhark", "k"),
       c("ก", "Ko Kai", "Thai", "k"),
       c("Ⲕ", "Kapa", "Coptic", "k"),
       c("ቀ", "Qe", "Ethiopic", "kʼ"),
-      c("ከ", "Ka", "Ethiopic", "k"),
-      c("ⴽ", "Yak", "Tifinagh", "k"),
-      c("C", "C", "Latin", "k/s")
+      c("C", "C", "Latin", "k/s"),
+
+      // Tamil
+      c("க", "Ka", "Tamil", "k"),
+      // Myanmar
+      c("က", "Ka", "Myanmar", "k"),
+      // Tibetan
+      c("ཀ", "Ka", "Tibetan", "k"),
+      // Syriac
+      c("ܟ", "Kaph", "Syriac", "k"),
+      // Lao
+      c("ກ", "Ko", "Lao", "k"),
+      // Sinhala
+      c("ක", "Ka", "Sinhala", "k"),
+      // N'Ko
+      c("ߞ", "Ka", "N'Ko", "k"),
+      // Khmer
+      c("ក", "Ka", "Khmer", "k"),
+      c("គ", "Ko", "Khmer", "k"),
     ],
   },
   {
@@ -367,6 +532,10 @@ export const soundGroups: SoundGroup[] = [
       c("ⵍ", "Yal", "Tifinagh", "l"),
       c("ለ", "Le", "Ethiopic", "l"),
       c("ᛚ", "Laguz", "Elder Futhark", "l"),
+      c("ᬮ", "La", "Balinese", "l"),
+      c("ᬍ", "La lenga", "Balinese", "l̩"),
+      c("ᬎ", "La lenga long", "Balinese", "l̩ː"),
+      c("ꦭ", "La", "Javanese", "l"),
       c("Ⰾ", "Ljudi", "Glagolitic", "l"),
 
       c("Ꮃ", "La", "Cherokee", "la"),
@@ -382,13 +551,27 @@ export const soundGroups: SoundGroup[] = [
       c("Ꮰ", "Tlo", "Cherokee", "t͡lo"),
       c("Ꮱ", "Tlu", "Cherokee", "t͡lu"),
       c("Ꮲ", "Tlv", "Cherokee", "t͡lə̃"),
-      c("ᛚ", "Laguz", "Elder Futhark", "l"),
-      c("ล", "Lo Ling", "Thai", "l"),
       c("ฬ", "Lo Chula", "Thai", "l"),
-      c("Ⲗ", "Laula", "Coptic", "l"),
-      c("ለ", "Le", "Ethiopic", "l"),
-      c("ⵍ", "Yal", "Tifinagh", "l"),
-      c("ᠯ", "La", "Mongolian", "l")
+
+      // Tamil
+      c("ல", "La", "Tamil", "l"),
+      c("ள", "Lla", "Tamil", "ɭ"),
+      // Myanmar
+      c("လ", "La", "Myanmar", "l"),
+      c("ဠ", "Lla", "Myanmar", "l"),
+      // Tibetan
+      c("ལ", "La", "Tibetan", "l"),
+      // Syriac
+      c("ܠ", "Lamadh", "Syriac", "l"),
+      // Lao
+      c("ລ", "Lo", "Lao", "l"),
+      // Sinhala
+      c("ල", "La", "Sinhala", "l"),
+      // N'Ko
+      c("ߟ", "La", "N'Ko", "l"),
+      // Khmer
+      c("ល", "Lo", "Khmer", "l"),
+      c("ឡ", "La", "Khmer", "l"),
     ],
   },
   {
@@ -411,6 +594,8 @@ export const soundGroups: SoundGroup[] = [
       c("ⵎ", "Yam", "Tifinagh", "m"),
       c("መ", "Me", "Ethiopic", "m"),
       c("ᛗ", "Mannaz", "Elder Futhark", "m"),
+      c("ᬫ", "Ma", "Balinese", "m"),
+      c("ꦩ", "Ma", "Javanese", "m"),
       c("Ⰿ", "Myslite", "Glagolitic", "m"),
 
       c("Ꮉ", "Ma", "Cherokee", "ma"),
@@ -418,12 +603,23 @@ export const soundGroups: SoundGroup[] = [
       c("Ꮋ", "Mi", "Cherokee", "mi"),
       c("Ꮌ", "Mo", "Cherokee", "mo"),
       c("Ꮍ", "Mu", "Cherokee", "mu"),
-      c("ᛗ", "Mannaz", "Elder Futhark", "m"),
-      c("ม", "Mo Ma", "Thai", "m"),
-      c("Ⲙ", "Mi", "Coptic", "m"),
-      c("መ", "Me", "Ethiopic", "m"),
-      c("ⵎ", "Yam", "Tifinagh", "m"),
-      c("ᠮ", "Ma", "Mongolian", "m")
+
+      // Tamil
+      c("ம", "Ma", "Tamil", "m"),
+      // Myanmar
+      c("မ", "Ma", "Myanmar", "m"),
+      // Tibetan
+      c("མ", "Ma", "Tibetan", "m"),
+      // Syriac
+      c("ܡ", "Mim", "Syriac", "m"),
+      // Lao
+      c("ມ", "Mo", "Lao", "m"),
+      // Sinhala
+      c("ම", "Ma", "Sinhala", "m"),
+      // N'Ko
+      c("ߡ", "Ma", "N'Ko", "m"),
+      // Khmer
+      c("ម", "Mo", "Khmer", "m"),
     ],
   },
   {
@@ -449,6 +645,13 @@ export const soundGroups: SoundGroup[] = [
       c("ⵏ", "Yan", "Tifinagh", "n"),
       c("ነ", "Ne", "Ethiopic", "n"),
       c("ᚾ", "Naudiz", "Elder Futhark", "n"),
+      c("ᬦ", "Na", "Balinese", "n"),
+      c("ᬡ", "Na (retroflex)", "Balinese", "ɳ"),
+      c("ᬜ", "Nya", "Balinese", "ɲ"),
+      c("ꦤ", "Na", "Javanese", "n"),
+      c("ꦟ", "Na (retroflex)", "Javanese", "ɳ"),
+      c("ꦘ", "Nya", "Javanese", "ɲ"),
+      c("ꦚ", "Nya (alt)", "Javanese", "ɲ"),
       c("Ⱀ", "Nash", "Glagolitic", "n"),
       c("Ñ", "Enye", "Latin Extended", "ɲ"),
 
@@ -460,14 +663,39 @@ export const soundGroups: SoundGroup[] = [
       c("Ꮓ", "No", "Cherokee", "no"),
       c("Ꮔ", "Nu", "Cherokee", "nu"),
       c("Ꮕ", "Nv", "Cherokee", "nə̃"),
-      c("ᚾ", "Naudiz", "Elder Futhark", "n"),
       c("ณ", "No Nen", "Thai", "n"),
-      c("น", "No Nu", "Thai", "n"),
-      c("Ⲛ", "Ni", "Coptic", "n"),
-      c("ነ", "Ne", "Ethiopic", "n"),
       c("ኘ", "Nye", "Ethiopic", "ɲ"),
-      c("ⵏ", "Yan", "Tifinagh", "n"),
-      c("ᠨ", "Na", "Mongolian", "n")
+
+      // Tamil
+      c("ண", "Na", "Tamil", "ɳ"),
+      c("ந", "Na", "Tamil", "n"),
+      c("ன", "Na", "Tamil", "n"),
+      c("ஞ", "Nya", "Tamil", "ɲ"),
+      // Myanmar
+      c("ဉ", "Nya", "Myanmar", "ɲ"),
+      c("ည", "Nya", "Myanmar", "ɲ"),
+      c("ဏ", "Na", "Myanmar", "ɳ"),
+      c("န", "Na", "Myanmar", "n"),
+      // Tibetan
+      c("ན", "Na", "Tibetan", "n"),
+      c("ཉ", "Nya", "Tibetan", "ɲ"),
+      // Syriac
+      c("ܢ", "Nun", "Syriac", "n"),
+      // Lao
+      c("ນ", "No", "Lao", "n"),
+      // Sinhala
+      c("ණ", "Na", "Sinhala", "ɳ"),
+      c("න", "Na", "Sinhala", "n"),
+      c("ඤ", "Nya", "Sinhala", "ɲ"),
+      // N'Ko
+      c("ߠ", "Na (palatal)", "N'Ko", "ɲ"),
+      c("ߣ", "Na", "N'Ko", "n"),
+      c("ߢ", "Nya", "N'Ko", "ɲ"),
+      c("ߧ", "Nya (alt)", "N'Ko", "ɲ"),
+      // Khmer
+      c("ញ", "Nyo", "Khmer", "ɲ"),
+      c("ណ", "Na", "Khmer", "n"),
+      c("ន", "No", "Khmer", "n"),
     ],
   },
   {
@@ -489,21 +717,44 @@ export const soundGroups: SoundGroup[] = [
       c("ᠫ", "Pa", "Mongolian", "p"),
       c("ⵒ", "Yap", "Tifinagh", "p"),
       c("ᛈ", "Pertho", "Elder Futhark", "p"),
+      c("ᬧ", "Pa", "Balinese", "p"),
+      c("ᬨ", "Pha", "Balinese", "pʰ"),
+      c("ꦥ", "Pa", "Javanese", "p"),
+      c("ꦦ", "Pha", "Javanese", "pʰ"),
       c("Ⱂ", "Pokoji", "Glagolitic", "p"),
       c("ፐ", "Pe", "Ethiopic", "p"),
 
       c("ფ", "Pari", "Georgian", "pʰ"),
-      c("ᛈ", "Pertho", "Elder Futhark", "p"),
-      c("ป", "Po Pla", "Thai", "p"),
       c("ผ", "Pho Phueng", "Thai", "pʰ"),
-      c("พ", "Pho Phan", "Thai", "pʰ"),
       c("ภ", "Pho Samphao", "Thai", "pʰ"),
-      c("Ⲡ", "Pi", "Coptic", "p"),
       c("Ⲫ", "Phi", "Coptic", "pʰ"),
       c("ጰ", "Phe", "Ethiopic", "pʼ"),
-      c("ፐ", "Pe", "Ethiopic", "p"),
-      c("ⵒ", "Yap", "Tifinagh", "p"),
-      c("ᠫ", "Pa", "Mongolian", "p")
+
+      // Tamil
+      c("ப", "Pa", "Tamil", "p"),
+      // Myanmar
+      c("ပ", "Pa", "Myanmar", "p"),
+      c("ဖ", "Pha", "Myanmar", "pʰ"),
+      // Tibetan
+      c("པ", "Pa", "Tibetan", "p"),
+      c("ཕ", "Pha", "Tibetan", "pʰ"),
+      // Syriac
+      c("ܦ", "Pe", "Syriac", "p"),
+      // Lao
+      c("ປ", "Po", "Lao", "p"),
+      // Sinhala
+      c("ප", "Pa", "Sinhala", "p"),
+      c("ඵ", "Pha", "Sinhala", "pʰ"),
+      // N'Ko
+      c("ߔ", "Pa", "N'Ko", "p"),
+      // Lao (aspirated)
+      c("ຜ", "Pho", "Lao", "pʰ"),
+      c("ພ", "Pho", "Lao", "pʰ"),
+      // Khmer
+      c("ប", "Pa", "Khmer", "p"),
+      c("ផ", "Pha", "Khmer", "pʰ"),
+      c("ព", "Po", "Khmer", "p"),
+      c("ភ", "Pho", "Khmer", "pʰ"),
     ],
   },
   {
@@ -526,16 +777,35 @@ export const soundGroups: SoundGroup[] = [
       c("ⵔ", "Yar", "Tifinagh", "r"),
       c("ረ", "Re", "Ethiopic", "r"),
       c("ᚱ", "Raido", "Elder Futhark", "r"),
+      c("ᬭ", "Ra", "Balinese", "r"),
+      c("ᬋ", "Ra repa", "Balinese", "r̩"),
+      c("ᬌ", "Ra repa long", "Balinese", "r̩ː"),
+      c("ꦫ", "Ra", "Javanese", "r"),
+      c("ꦬ", "Ra (alt)", "Javanese", "r"),
       c("Ⱃ", "Ritsi", "Glagolitic", "r"),
+      c("Ř", "R-hacek", "Latin Extended", "r̝"),
 
       c("Ռ", "Rra", "Armenian", "r"),
-      c("ᚱ", "Raido", "Elder Futhark", "r"),
-      c("ร", "Ro Ruea", "Thai", "r"),
-      c("Ⲣ", "Ro", "Coptic", "r"),
-      c("ረ", "Re", "Ethiopic", "r"),
-      c("ⵔ", "Yar", "Tifinagh", "r"),
       c("ⵕ", "Yarr", "Tifinagh", "rˤ"),
-      c("ᠷ", "Ra", "Mongolian", "r")
+
+      // Tamil
+      c("ர", "Ra", "Tamil", "r"),
+      c("ற", "Rra", "Tamil", "r"),
+      // Myanmar
+      c("ရ", "Ra", "Myanmar", "r"),
+      // Tibetan
+      c("ར", "Ra", "Tibetan", "r"),
+      // Syriac
+      c("ܪ", "Resh", "Syriac", "r"),
+      // Lao
+      c("ຣ", "Ro", "Lao", "r"),
+      // Sinhala
+      c("ර", "Ra", "Sinhala", "r"),
+      // N'Ko
+      c("ߙ", "Ra", "N'Ko", "r"),
+      c("ߚ", "Rra", "N'Ko", "r"),
+      // Khmer
+      c("រ", "Ro", "Khmer", "r"),
     ],
   },
   {
@@ -560,8 +830,12 @@ export const soundGroups: SoundGroup[] = [
       c("ⵙ", "Yas", "Tifinagh", "s"),
       c("ሰ", "Se", "Ethiopic", "s"),
       c("ᛊ", "Sowilo", "Elder Futhark", "s"),
+      c("ᬲ", "Sa", "Balinese", "s"),
+      c("ꦱ", "Sa", "Javanese", "s"),
       c("Ⱄ", "Slovo", "Glagolitic", "s"),
       c("ß", "Eszett", "Latin Extended", "s"),
+      c("Ç", "C-cedilla", "Latin Extended", "s"),
+      c("Ś", "S-acute", "Latin Extended", "ɕ"),
 
       c("Ꮜ", "Sa", "Cherokee", "sa"),
       c("Ꮝ", "S", "Cherokee", "s"),
@@ -570,18 +844,32 @@ export const soundGroups: SoundGroup[] = [
       c("Ꮠ", "So", "Cherokee", "so"),
       c("Ꮡ", "Su", "Cherokee", "su"),
       c("Ꮢ", "Sv", "Cherokee", "sə̃"),
-      c("ᛊ", "Sowilo", "Elder Futhark", "s"),
       c("ซ", "So So", "Thai", "s"),
       c("ศ", "So Sala", "Thai", "s"),
       c("ษ", "So Ruesi", "Thai", "s"),
-      c("ส", "So Suea", "Thai", "s"),
       c("Ⲋ", "Sou", "Coptic", "s"),
-      c("Ⲥ", "Sima", "Coptic", "s"),
       c("ሠ", "Sze", "Ethiopic", "s"),
-      c("ሰ", "Se", "Ethiopic", "s"),
-      c("ⵙ", "Yas", "Tifinagh", "s"),
       c("ⵚ", "Yass", "Tifinagh", "sˤ"),
-      c("ᠰ", "Sa", "Mongolian", "s")
+
+      // Tamil
+      c("ச", "Ca", "Tamil", "s"),
+      c("ஸ", "Sa", "Tamil", "s"),
+      // Myanmar
+      c("စ", "Sa", "Myanmar", "s"),
+      c("ဆ", "Hsa", "Myanmar", "sʰ"),
+      // Tibetan
+      c("ས", "Sa", "Tibetan", "s"),
+      // Syriac
+      c("ܣ", "Semkath", "Syriac", "s"),
+      c("ܨ", "Sadhe", "Syriac", "sˤ"),
+      // Lao
+      c("ຊ", "So", "Lao", "s"),
+      // Sinhala
+      c("ස", "Sa", "Sinhala", "s"),
+      // N'Ko
+      c("ߛ", "Sa", "N'Ko", "s"),
+      // Khmer
+      c("ស", "So", "Khmer", "s"),
     ],
   },
   {
@@ -612,28 +900,62 @@ export const soundGroups: SoundGroup[] = [
       c("ⵜ", "Yat", "Tifinagh", "t"),
       c("ተ", "Te", "Ethiopic", "t"),
       c("ᛏ", "Tiwaz", "Elder Futhark", "t"),
+      c("ᬢ", "Ta", "Balinese", "t"),
+      c("ᬣ", "Tha", "Balinese", "tʰ"),
+      c("ᬝ", "Ta (retroflex)", "Balinese", "ʈ"),
+      c("ᬞ", "Tha (retroflex)", "Balinese", "ʈʰ"),
+      c("ꦠ", "Ta", "Javanese", "t"),
+      c("ꦡ", "Tha", "Javanese", "tʰ"),
+      c("ꦛ", "Ta (retroflex)", "Javanese", "ʈ"),
+      c("ꦜ", "Tha (retroflex)", "Javanese", "ʈʰ"),
       c("Ⱅ", "Tvrido", "Glagolitic", "t"),
 
       c("Ꮤ", "Ta", "Cherokee", "ta"),
       c("Ꮦ", "Te", "Cherokee", "te"),
       c("Ꮨ", "Ti", "Cherokee", "ti"),
-      c("ᛏ", "Tiwaz", "Elder Futhark", "t"),
       c("ฏ", "To Patak", "Thai", "t"),
       c("ฐ", "Tho Than", "Thai", "tʰ"),
       c("ฑ", "Tho Nangmon", "Thai", "tʰ"),
       c("ฒ", "Tho Phuthao", "Thai", "tʰ"),
-      c("ต", "To Tao", "Thai", "t"),
-      c("ถ", "Tho Thung", "Thai", "tʰ"),
       c("ท", "Tho Thahan", "Thai", "tʰ"),
       c("ธ", "Tho Thong", "Thai", "tʰ"),
       c("Ⲑ", "Thetha", "Coptic", "tʰ"),
-      c("Ⲧ", "Tau", "Coptic", "t"),
       c("Ϯ", "Ti", "Coptic", "ti"),
-      c("ተ", "Te", "Ethiopic", "t"),
       c("ጠ", "The", "Ethiopic", "tʼ"),
-      c("ⵜ", "Yat", "Tifinagh", "t"),
       c("ⵟ", "Yatt", "Tifinagh", "tˤ"),
-      c("ᠲ", "Ta", "Mongolian", "t")
+
+      // Tamil
+      c("ட", "Ta", "Tamil", "ʈ"),
+      c("த", "Tha", "Tamil", "t"),
+      c("သ", "Tha", "Myanmar", "tʰ"),
+      // Myanmar
+      c("ဋ", "Ta", "Myanmar", "t"),
+      c("ဌ", "Hta", "Myanmar", "tʰ"),
+      c("တ", "Ta", "Myanmar", "t"),
+      c("ထ", "Hta", "Myanmar", "tʰ"),
+      // Tibetan
+      c("ཏ", "Ta", "Tibetan", "t"),
+      c("ཐ", "Tha", "Tibetan", "tʰ"),
+      // Syriac
+      c("ܛ", "Teth", "Syriac", "tˤ"),
+      c("ܬ", "Taw", "Syriac", "t"),
+      // Lao
+      c("ຕ", "To", "Lao", "t"),
+      c("ຖ", "Tho", "Lao", "tʰ"),
+      c("ທ", "Tho", "Lao", "tʰ"),
+      // Sinhala
+      c("ට", "Ta", "Sinhala", "ʈ"),
+      c("ඨ", "Tha", "Sinhala", "ʈʰ"),
+      c("ත", "Ta", "Sinhala", "t"),
+      c("ථ", "Tha", "Sinhala", "tʰ"),
+      // N'Ko
+      c("ߕ", "Ta", "N'Ko", "t"),
+      // Khmer
+      c("ឋ", "Tho", "Khmer", "tʰ"),
+      c("ត", "Ta", "Khmer", "t"),
+      c("ថ", "Tha", "Khmer", "tʰ"),
+      c("ទ", "To", "Khmer", "t"),
+      c("ធ", "Tho", "Khmer", "tʰ"),
     ],
   },
   {
@@ -649,16 +971,19 @@ export const soundGroups: SoundGroup[] = [
       c("Փ", "Piwr", "Armenian", "pʰ"),
       c("ฟ", "Fo Fan", "Thai", "f"),
       c("ᚠ", "Fehu", "Elder Futhark", "f"),
+      c("Ⱇ", "Frt", "Glagolitic", "f"),
       c("ⴼ", "Yaf", "Tifinagh", "f"),
       c("ፈ", "Fe", "Ethiopic", "f"),
 
       c("Ֆ", "Fe", "Armenian", "f"),
-      c("ᚠ", "Fehu", "Elder Futhark", "f"),
       c("ฝ", "Fo Fa", "Thai", "f"),
-      c("ฟ", "Fo Fan", "Thai", "f"),
       c("Ϥ", "Fai", "Coptic", "f"),
-      c("ፈ", "Fe", "Ethiopic", "f"),
-      c("ⴼ", "Yaf", "Tifinagh", "f")
+
+      // Lao
+      c("ຝ", "Fo", "Lao", "f"),
+      c("ຟ", "Fo", "Lao", "f"),
+      // N'Ko
+      c("ߝ", "Fa", "N'Ko", "f")
     ],
   },
   {
@@ -677,7 +1002,10 @@ export const soundGroups: SoundGroup[] = [
       c("ჰ", "Hae", "Georgian", "h"),
       c("Հ", "Ho", "Armenian", "h"),
       c("ห", "Ho Hip", "Thai", "h"),
+      c("ᬳ", "Ha", "Balinese", "h"),
+      c("ꦲ", "Ha", "Javanese", "h"),
       c("ᚺ", "Hagalaz", "Elder Futhark", "h"),
+      c("Ⱈ", "Heru", "Glagolitic", "x"),
       c("ⵀ", "Yah", "Tifinagh", "h"),
       c("ኀ", "Hha", "Ethiopic", "h"),
 
@@ -687,16 +1015,30 @@ export const soundGroups: SoundGroup[] = [
       c("Ꮀ", "Ho", "Cherokee", "ho"),
       c("Ꮁ", "Hu", "Cherokee", "hu"),
       c("Ꮂ", "Hv", "Cherokee", "hə̃"),
-      c("ჰ", "Hae", "Georgian", "h"),
-      c("ᚺ", "Hagalaz", "Elder Futhark", "h"),
-      c("ห", "Ho Hip", "Thai", "h"),
       c("ฮ", "Ho Nokhuk", "Thai", "h"),
       c("Ϩ", "Hori", "Coptic", "h"),
       c("ሀ", "Ha", "Ethiopic", "h"),
       c("ሐ", "Hha", "Ethiopic", "ħ"),
-      c("ኀ", "Hha", "Ethiopic", "h"),
-      c("ⵀ", "Yah", "Tifinagh", "h"),
-      c("ⵃ", "Yahh", "Tifinagh", "ħ")
+      c("ⵃ", "Yahh", "Tifinagh", "ħ"),
+
+      // Tamil
+      c("ஹ", "Ha", "Tamil", "h"),
+      // Myanmar
+      c("ဟ", "Ha", "Myanmar", "h"),
+      // Tibetan
+      c("ཧ", "Ha", "Tibetan", "h"),
+      // Syriac
+      c("ܗ", "He", "Syriac", "h"),
+      c("ܚ", "Heth", "Syriac", "ħ"),
+      // Lao
+      c("ຫ", "Ho", "Lao", "h"),
+      c("ຮ", "Ho", "Lao", "h"),
+      // Sinhala
+      c("හ", "Ha", "Sinhala", "h"),
+      // N'Ko
+      c("ߤ", "Ha", "N'Ko", "h"),
+      // Khmer
+      c("ហ", "Ho", "Khmer", "h"),
     ],
   },
   {
@@ -710,8 +1052,14 @@ export const soundGroups: SoundGroup[] = [
       c("Ⲃ", "Vida", "Coptic", "v"),
       c("Ⰲ", "Vede", "Glagolitic", "v"),
 
-      c("Ⲃ", "Vida", "Coptic", "v"),
-      c("ቨ", "Ve", "Ethiopic", "v")
+      c("ቨ", "Ve", "Ethiopic", "v"),
+
+      // Tamil
+      c("வ", "Va", "Tamil", "v"),
+      // Sinhala
+      c("ව", "Va", "Sinhala", "v"),
+      // Khmer
+      c("វ", "Vo", "Khmer", "v"),
     ],
   },
   {
@@ -724,7 +1072,10 @@ export const soundGroups: SoundGroup[] = [
       c("ว", "Wo Waen", "Thai", "w"),
       c("ወ", "We", "Ethiopic", "w"),
       c("ⵡ", "Yaw", "Tifinagh", "w"),
+      c("ᬯ", "Wa", "Balinese", "w"),
+      c("ꦮ", "Wa", "Javanese", "w"),
       c("ᚹ", "Wunjo", "Elder Futhark", "w"),
+      c("Ł", "L-stroke", "Latin Extended", "w"),
 
       c("Ꮹ", "Wa", "Cherokee", "wa"),
       c("Ꮺ", "We", "Cherokee", "we"),
@@ -732,11 +1083,18 @@ export const soundGroups: SoundGroup[] = [
       c("Ꮼ", "Wo", "Cherokee", "wo"),
       c("Ꮽ", "Wu", "Cherokee", "wu"),
       c("Ꮾ", "Wv", "Cherokee", "wə̃"),
-      c("ᚹ", "Wunjo", "Elder Futhark", "w"),
-      c("ว", "Wo Waen", "Thai", "w"),
-      c("ወ", "We", "Ethiopic", "w"),
-      c("ⵡ", "Yaw", "Tifinagh", "w"),
-      c("ᠸ", "Wa", "Mongolian", "w")
+      c("ᠸ", "Wa", "Mongolian", "w"),
+
+      // Syriac
+      c("ܘ", "Waw", "Syriac", "w"),
+      // Myanmar
+      c("ဝ", "Wa", "Myanmar", "w"),
+      // Tibetan
+      c("ཝ", "Wa", "Tibetan", "w"),
+      // Lao
+      c("ວ", "Wo", "Lao", "w"),
+      // N'Ko
+      c("ߥ", "Wa", "N'Ko", "w")
     ],
   },
   {
@@ -755,8 +1113,15 @@ export const soundGroups: SoundGroup[] = [
       c("ㅈ", "Jieut", "Korean", "tɕ"),
       c("ㅉ", "Ssang Jieut", "Korean", "tɕ*"),
       c("य", "Ya", "Devanagari", "j"),
+      c("ᬚ", "Ja", "Balinese", "dʒ"),
+      c("ᬛ", "Jha", "Balinese", "dʒʱ"),
+      c("ꦗ", "Ja", "Javanese", "dʒ"),
+      c("ꦙ", "Jha", "Javanese", "dʒʱ"),
+      c("ᬬ", "Ya", "Balinese", "j"),
+      c("ꦪ", "Ya", "Javanese", "j"),
       c("ย", "Yo Yak", "Thai", "j"),
       c("የ", "Ye", "Ethiopic", "j"),
+      c("Ⰼ", "Djerv", "Glagolitic", "dʒ"),
       c("ᛃ", "Jera", "Elder Futhark", "j"),
 
       c("Ꮿ", "Ya", "Cherokee", "ja"),
@@ -766,15 +1131,34 @@ export const soundGroups: SoundGroup[] = [
       c("Ᏼ", "Yv", "Cherokee", "jə̃"),
       c("ჯ", "Jani", "Georgian", "dʒ"),
       c("Ջ", "Jheh", "Armenian", "dʒ"),
-      c("ᛃ", "Jera", "Elder Futhark", "j"),
       c("ญ", "Yo Ying", "Thai", "j"),
-      c("ย", "Yo Yak", "Thai", "j"),
       c("Ϫ", "Gangia", "Coptic", "dʒ"),
-      c("የ", "Ye", "Ethiopic", "j"),
       c("ጀ", "Je", "Ethiopic", "dʒ"),
       c("ⵢ", "Yay", "Tifinagh", "j"),
       c("ᠵ", "Ja", "Mongolian", "dʒ"),
-      c("ᠶ", "Ya", "Mongolian", "j")
+      c("ᠶ", "Ya", "Mongolian", "j"),
+
+      // Tamil
+      c("ய", "Ya", "Tamil", "j"),
+      // Myanmar
+      c("ယ", "Ya", "Myanmar", "j"),
+      // Tibetan
+      c("ཡ", "Ya", "Tibetan", "j"),
+      c("ཇ", "Ja", "Tibetan", "dʒ"),
+      // Syriac
+      c("ܝ", "Yodh", "Syriac", "j"),
+      // Lao
+      c("ຍ", "Nyo", "Lao", "j"),
+      c("ຢ", "Yo", "Lao", "j"),
+      // Sinhala
+      c("ය", "Ya", "Sinhala", "j"),
+      c("ජ", "Ja", "Sinhala", "dʒ"),
+      c("ඣ", "Jha", "Sinhala", "dʒʱ"),
+      // N'Ko
+      c("ߖ", "Ja", "N'Ko", "dʒ"),
+      c("ߦ", "Ya", "N'Ko", "j"),
+      // Khmer
+      c("យ", "Yo", "Khmer", "j"),
     ],
   },
   {
@@ -797,15 +1181,23 @@ export const soundGroups: SoundGroup[] = [
       c("ⵥ", "Yazh", "Tifinagh", "ʒ"),
       c("ᛉ", "Algiz", "Elder Futhark", "z"),
       c("ዘ", "Ze", "Ethiopic", "z"),
-      c("Ⱈ", "Zhivete", "Glagolitic", "ʒ"),
+      c("Ⰶ", "Zhivete", "Glagolitic", "ʒ"),
+      c("Ⰸ", "Zemlja", "Glagolitic", "z"),
+      c("Ż", "Z-dot", "Latin Extended", "ʐ"),
+      c("Ź", "Z-acute", "Latin Extended", "ʑ"),
+      c("Ž", "Z-caron", "Latin Extended", "ʒ"),
 
-      c("ᛉ", "Algiz", "Elder Futhark", "z"),
       c("Ⲍ", "Zata", "Coptic", "z"),
-      c("ዘ", "Ze", "Ethiopic", "z"),
       c("ዠ", "Zhe", "Ethiopic", "ʒ"),
       c("ⵊ", "Yazh", "Tifinagh", "ʒ"),
-      c("ⵣ", "Yaz", "Tifinagh", "z"),
-      c("ⵥ", "Yazz", "Tifinagh", "zˤ")
+
+      // Myanmar
+      c("ဇ", "Za", "Myanmar", "z"),
+      c("ဈ", "Za", "Myanmar", "z"),
+      // Tibetan
+      c("ཟ", "Za", "Tibetan", "z"),
+      // Syriac
+      c("ܙ", "Zayn", "Syriac", "z")
     ],
   },
   {
@@ -822,15 +1214,31 @@ export const soundGroups: SoundGroup[] = [
       c("შ", "Shini", "Georgian", "ʃ"),
       c("Շ", "Sha", "Armenian", "ʃ"),
       c("ซ", "So So", "Thai", "s"),
+      c("ᬰ", "Sa (palatal)", "Balinese", "ɕ"),
+      c("ᬱ", "Sa (retroflex)", "Balinese", "ʂ"),
+      c("ꦯ", "Sa (palatal)", "Javanese", "ɕ"),
+      c("ꦰ", "Sa (retroflex)", "Javanese", "ʂ"),
+      c("Ⱍ", "Sha", "Glagolitic", "ʃ"),
+      c("Ⱊ", "Shta", "Glagolitic", "ʃt"),
+      c("Š", "S-caron", "Latin Extended", "ʃ"),
       c("ሸ", "She", "Ethiopic", "ʃ"),
       c("ⵛ", "Yash", "Tifinagh", "ʃ"),
 
-      c("Ш", "Sha", "Cyrillic", "ʃ"),
-      c("Щ", "Shcha", "Cyrillic", "ɕː"),
       c("Ϣ", "Shai", "Coptic", "ʃ"),
-      c("ሸ", "She", "Ethiopic", "ʃ"),
-      c("ⵛ", "Yash", "Tifinagh", "ʃ"),
-      c("ᠱ", "Sha", "Mongolian", "ʃ")
+      c("ᠱ", "Sha", "Mongolian", "ʃ"),
+
+      // Tamil
+      c("ஷ", "Sha", "Tamil", "ʃ"),
+      // Tibetan
+      c("ཤ", "Sha", "Tibetan", "ʃ"),
+      c("ཞ", "Zha", "Tibetan", "ʒ"),
+      // Syriac
+      c("ܫ", "Shin", "Syriac", "ʃ"),
+      // Tamil (zha - retroflex)
+      c("ழ", "Zha", "Tamil", "ɻ"),
+      // Sinhala
+      c("ශ", "Sha", "Sinhala", "ʃ"),
+      c("ෂ", "Sha", "Sinhala", "ʂ")
     ],
   },
   {
@@ -848,23 +1256,38 @@ export const soundGroups: SoundGroup[] = [
       c("ჭ", "Chari", "Georgian", "tʃʼ"),
       c("Չ", "Cha", "Armenian", "tʃ"),
       c("ช", "Cho Chang", "Thai", "tɕʰ"),
+      c("ᬘ", "Ca", "Balinese", "tʃ"),
+      c("ᬙ", "Cha", "Balinese", "tʃʰ"),
+      c("ꦕ", "Ca", "Javanese", "tʃ"),
+      c("ꦖ", "Cha", "Javanese", "tʃʰ"),
+      c("Ⱌ", "Chrvi", "Glagolitic", "tʃ"),
+      c("Č", "C-caron", "Latin Extended", "tʃ"),
       c("ᠴ", "Cha", "Mongolian", "tʃ"),
       c("ⵞ", "Yach", "Tifinagh", "tʃ"),
       c("ቸ", "Che", "Ethiopic", "tʃ"),
 
-      c("Ч", "Che", "Cyrillic", "tʃ"),
-      c("ჩ", "Chini", "Georgian", "tʃ"),
-      c("ჭ", "Chari", "Georgian", "tʃʼ"),
       c("Ճ", "Cheh", "Armenian", "tʃ"),
       c("จ", "Cho Chan", "Thai", "tɕ"),
       c("ฉ", "Cho Ching", "Thai", "tɕʰ"),
-      c("ช", "Cho Chang", "Thai", "tɕʰ"),
       c("ฌ", "Cho Choe", "Thai", "tɕʰ"),
       c("Ϭ", "Shima", "Coptic", "tʃ"),
-      c("ቸ", "Che", "Ethiopic", "tʃ"),
       c("ጨ", "Che", "Ethiopic", "tʃʼ"),
-      c("ⵞ", "Yach", "Tifinagh", "tʃ"),
-      c("ᠴ", "Cha", "Mongolian", "tʃ")
+
+      // Tibetan
+      c("ཅ", "Ca", "Tibetan", "tʃ"),
+      c("ཆ", "Cha", "Tibetan", "tʃʰ"),
+      // Sinhala
+      c("ච", "Ca", "Sinhala", "tʃ"),
+      c("ඡ", "Cha", "Sinhala", "tʃʰ"),
+      // Lao
+      c("ຈ", "Cho", "Lao", "tɕ"),
+      // N'Ko
+      c("ߗ", "Cha", "N'Ko", "tʃ"),
+      // Khmer
+      c("ច", "Cha", "Khmer", "tʃ"),
+      c("ឆ", "Chha", "Khmer", "tʃʰ"),
+      c("ជ", "Cho", "Khmer", "tʃ"),
+      c("ឈ", "Chho", "Khmer", "tʃʰ"),
     ],
   },
   {
@@ -872,26 +1295,40 @@ export const soundGroups: SoundGroup[] = [
     characters: [
       c("Θ", "Theta", "Greek", "θ"),
       c("ث", "Tha", "Arabic", "θ"),
+      c("Ð", "Eth (upper)", "Icelandic", "ð"),
       c("ð", "Eth", "Icelandic", "ð"),
       c("Þ", "Thorn", "Icelandic", "θ"),
+      c("Ð", "Eth", "Latin Extended", "ð"),
+      c("Þ", "Thorn", "Latin Extended", "θ"),
       c("Ⲑ", "Thetha", "Coptic", "tʰ"),
       c("ᚦ", "Thurisaz", "Elder Futhark", "θ"),
-
-      c("ᚦ", "Thurisaz", "Elder Futhark", "θ")
     ],
   },
   {
     id: "ng", label: "NG sound", ipa: "/ŋ/", category: "consonant",
     characters: [
       c("Ŋ", "Eng", "Latin Extended", "ŋ"),
+      c("ᬗ", "Nga", "Balinese", "ŋ"),
+      c("ꦔ", "Nga", "Javanese", "ŋ"),
       c("ㅇ", "Ieung", "Korean", "ŋ"),
       c("ง", "Ngo Ngu", "Thai", "ŋ"),
       c("ᛜ", "Ingwaz", "Elder Futhark", "ŋ"),
       c("ŋ", "Eng (lower)", "Latin Extended", "ŋ"),
 
-      c("ᛜ", "Ingwaz", "Elder Futhark", "ŋ"),
-      c("ง", "Ngo Ngu", "Thai", "ŋ"),
-      c("ᠩ", "Ang", "Mongolian", "ŋ")
+      c("ᠩ", "Ang", "Mongolian", "ŋ"),
+
+      // Tamil
+      c("ங", "Nga", "Tamil", "ŋ"),
+      // Myanmar
+      c("င", "Nga", "Myanmar", "ŋ"),
+      // Tibetan
+      c("ང", "Nga", "Tibetan", "ŋ"),
+      // Lao
+      c("ງ", "Ngo", "Lao", "ŋ"),
+      // Sinhala
+      c("ඞ", "Nga", "Sinhala", "ŋ"),
+      // Khmer
+      c("ង", "Ngo", "Khmer", "ŋ"),
     ],
   },
   {
@@ -905,6 +1342,8 @@ export const soundGroups: SoundGroup[] = [
       c("წ", "Tsili", "Georgian", "tsʼ"),
       c("Ծ", "Tsa", "Armenian", "ts"),
       c("Ց", "Tso", "Armenian", "tsʰ"),
+      c("Ⰷ", "Dzelo", "Glagolitic", "dz"),
+      c("Ⱋ", "Tsi", "Glagolitic", "ts"),
       c("ጸ", "Tse", "Ethiopic", "tsʼ"),
 
       c("Ꮳ", "Tsa", "Cherokee", "tsa"),
@@ -913,14 +1352,14 @@ export const soundGroups: SoundGroup[] = [
       c("Ꮶ", "Tso", "Cherokee", "tso"),
       c("Ꮷ", "Tsu", "Cherokee", "tsu"),
       c("Ꮸ", "Tsv", "Cherokee", "tsə̃"),
-      c("Ц", "Tse", "Cyrillic", "ts"),
       c("ძ", "Dzi", "Georgian", "dz"),
-      c("ც", "Tsani", "Georgian", "ts"),
-      c("წ", "Tsili", "Georgian", "tsʼ"),
       c("Ձ", "Ja", "Armenian", "dz"),
-      c("Ծ", "Tsa", "Armenian", "ts"),
-      c("ጸ", "Tse", "Ethiopic", "tsʼ"),
-      c("ፀ", "Tze", "Ethiopic", "tsʼ")
+      c("ፀ", "Tze", "Ethiopic", "tsʼ"),
+
+      // Tibetan
+      c("ཙ", "Tsa", "Tibetan", "ts"),
+      c("ཚ", "Tsha", "Tibetan", "tsʰ"),
+      c("ཛ", "Dza", "Tibetan", "dz")
     ],
   },
   {
@@ -936,8 +1375,6 @@ export const soundGroups: SoundGroup[] = [
       c("ᠬ", "Kha", "Mongolian", "x"),
       c("ⵅ", "Yakh", "Tifinagh", "x"),
 
-      c("ხ", "Khani", "Georgian", "x"),
-      c("ข", "Kho Khai", "Thai", "kʰ"),
       c("ฃ", "Kho Khuat", "Thai", "kʰ"),
       c("ค", "Kho Khwai", "Thai", "kʰ"),
       c("ฅ", "Kho Khon", "Thai", "kʰ"),
@@ -945,8 +1382,19 @@ export const soundGroups: SoundGroup[] = [
       c("Ⲭ", "Khi", "Coptic", "kʰ"),
       c("Ϧ", "Khai", "Coptic", "x"),
       c("ኸ", "Kha", "Ethiopic", "x"),
-      c("ⵅ", "Yakh", "Tifinagh", "x"),
-      c("ᠬ", "Qa/Ka", "Mongolian", "x/k")
+
+      // Myanmar
+      c("ခ", "Kha", "Myanmar", "kʰ"),
+      // Tibetan
+      c("ཁ", "Kha", "Tibetan", "kʰ"),
+      // Lao
+      c("ຂ", "Kho", "Lao", "kʰ"),
+      c("ຄ", "Kho", "Lao", "kʰ"),
+      // Sinhala
+      c("ඛ", "Kha", "Sinhala", "kʰ"),
+      // Khmer
+      c("ខ", "Kha", "Khmer", "kʰ"),
+      c("ឃ", "Kho", "Khmer", "kʰ"),
     ],
   },
   {
@@ -959,8 +1407,9 @@ export const soundGroups: SoundGroup[] = [
       c("ቀ", "Qe", "Ethiopic", "kʼ"),
       c("ⵇ", "Yaq", "Tifinagh", "q"),
 
-      c("ყ", "Qari", "Georgian", "qʼ"),
-      c("ⵇ", "Yaq", "Tifinagh", "q")
+
+      // Syriac
+      c("ܩ", "Qoph", "Syriac", "q")
     ],
   },
   {
@@ -971,10 +1420,7 @@ export const soundGroups: SoundGroup[] = [
       c("Ⲝ", "Ksi", "Coptic", "ks"),
 
       c("Ψ", "Psi", "Greek", "ps"),
-      c("Ξ", "Xi", "Greek", "ks"),
-      c("Ⲝ", "Ksi", "Coptic", "ks"),
       c("Ⲯ", "Psi", "Coptic", "ps"),
-      c("X", "X", "Latin", "ks")
     ],
   },
   // ── Additional Hiragana/Katakana rows ──
