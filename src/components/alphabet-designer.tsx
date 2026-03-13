@@ -196,7 +196,7 @@ export function AlphabetDesigner() {
       </div>
 
       {/* Main content — scrollable below the sticky pane */}
-      <div className="pt-4 pb-8">
+      <div className="pt-2 pb-8">
         <MainContent
           grouped={grouped}
           groupBy={groupBy}
@@ -251,7 +251,7 @@ function FilterList({
       </button>
 
       {/* Scrollable list — fixed height */}
-      <div className="h-48 overflow-y-auto">
+      <div className="h-36 overflow-y-auto">
         {/* All option */}
         <button
           onClick={() => {
@@ -333,7 +333,7 @@ function MobileFilterBar({
             {groupBy === "sound" ? "Grouped" : "Group by"}
           </span>
         </button>
-        <div className="h-32 overflow-y-auto">
+        <div className="h-24 overflow-y-auto">
           {soundGroups.map((g) => (
             <button
               key={g.id}
@@ -366,7 +366,7 @@ function MobileFilterBar({
             {groupBy === "script" ? "Grouped" : "Group by"}
           </span>
         </button>
-        <div className="h-32 overflow-y-auto">
+        <div className="h-24 overflow-y-auto">
           {allScripts.map((s) => (
             <button
               key={s}

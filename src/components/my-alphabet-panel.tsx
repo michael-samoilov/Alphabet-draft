@@ -59,12 +59,17 @@ export function MyAlphabetPanel({
 
   const rows = useMemo(() => arrangeAsKeyboard(entries), [entries]);
 
-  // Fixed keyboard height (in px). Keys shrink to fit.
-  const KEYBOARD_HEIGHT = 140;
-  const numRows = rows.length || 1;
+  // Fixed keyboard height. Keys are square at base size, shrink only when needed.
+  const KEYBOARD_HEIGHT = 100;
+  const BASE_KEY_SIZE = 28;
   const gap = 3;
-  const keyHeight = Math.max(16, (KEYBOARD_HEIGHT - gap * (numRows - 1)) / numRows);
-  const fontSize = Math.max(8, Math.min(18, keyHeight * 0.55));
+  const numRows = rows.length || 1;
+  const naturalHeight = numRows * BASE_KEY_SIZE + (numRows - 1) * gap;
+  const needsShrink = naturalHeight > KEYBOARD_HEIGHT;
+  const keyHeight = needsShrink
+    ? Math.max(14, (KEYBOARD_HEIGHT - gap * (numRows - 1)) / numRows)
+    : BASE_KEY_SIZE;
+  const fontSize = Math.max(8, Math.min(16, keyHeight * 0.55));
 
   return (
     <div className="space-y-2">
@@ -92,7 +97,7 @@ export function MyAlphabetPanel({
       {/* Keyboard — fixed height container, keys shrink to fit */}
       <div
         className="flex flex-col items-center w-full overflow-hidden"
-        style={{ height: `${KEYBOARD_HEIGHT}px`, gap: `${gap}px` }}
+        style={{ height: `${KEYBOARD_HEIGHT}px`, gap: `${gap}px`, justifyContent: needsShrink ? 'stretch' : 'flex-start' }}
       >
         {entries.length === 0 ? (
           <div className="flex items-center justify-center h-full w-full rounded-xl border-2 border-dashed border-zinc-300 dark:border-zinc-700">
@@ -110,8 +115,7 @@ export function MyAlphabetPanel({
                 gap: `${gap}px`,
                 paddingLeft: rowIndex % 2 === 1 ? "3%" : 0,
                 paddingRight: rowIndex % 2 === 1 ? "3%" : 0,
-                height: `${keyHeight}px`,
-                minHeight: 0,
+                ...(needsShrink ? { height: `${keyHeight}px`, minHeight: 0 } : {}),
               }}
             >
               {row.map(({ character, key }) => (
@@ -119,7 +123,7 @@ export function MyAlphabetPanel({
                   key={key}
                   onClick={() => onRemove(key)}
                   title={`${character.name} (${character.script}) — click to remove`}
-                  className="group relative flex items-center justify-center rounded-lg border border-emerald-200 bg-emerald-50 leading-none transition-all hover:border-red-300 hover:bg-red-50 active:scale-95 dark:border-emerald-800 dark:bg-emerald-950 dark:hover:border-red-700 dark:hover:bg-red-950 cursor-pointer shadow-sm overflow-hidden w-full h-full"
+                  className={`group relative flex items-center justify-center rounded-lg border border-emerald-200 bg-emerald-50 leading-none transition-all hover:border-red-300 hover:bg-red-50 active:scale-95 dark:border-emerald-800 dark:bg-emerald-950 dark:hover:border-red-700 dark:hover:bg-red-950 cursor-pointer shadow-sm overflow-hidden w-full ${needsShrink ? 'h-full' : 'aspect-square'}`}
                   style={{ fontSize: `${fontSize}px` }}
                 >
                   {character.char}
