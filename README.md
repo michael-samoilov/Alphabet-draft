@@ -1,26 +1,68 @@
 # Alphabet Designer
 
-Pick the coolest characters from writing systems around the world and combine them into your own custom super alphabet.
+Alphabet Designer lets you pick characters from writing systems around the
+world and combine them into your own alphabet. Browse by sound or by script,
+tap the characters you like, then copy or export the result.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmichael-samoilov%2FAlphabet-draft)
+**Live:** [alphabet-draft.vercel.app](https://alphabet-draft.vercel.app)
+
+![Alphabet Designer on desktop with eight characters selected](docs/screenshot-desktop.png)
+
+<img src="docs/screenshot-phone.png" alt="Alphabet Designer on a phone" width="300">
 
 ## Features
 
-- ~300 characters from 20+ writing systems (Latin, Greek, Cyrillic, Hebrew, Arabic, Devanagari, Hiragana, Katakana, Korean, Georgian, Armenian, Thai, Mongolian, Tifinagh, Ethiopic, Elder Futhark, Coptic, Cherokee, Glagolitic, Icelandic)
-- Browse by **sound group** (all "A" sounds together) or by **origin script** (all Georgian, all Mongolian, etc.)
-- Sticky "My Alphabet" panel with live selection tracking
-- Filter by vowels/consonants and by writing system
+- **Over 1,000 characters from 32 scripts**, including Tengwar (Elvish), sorted
+  into 38 vowel and consonant sound groups.
+- **Two filter panes.** Filter by sound and by script at the same time, and
+  group the results by either one.
+- **My Alphabet panel.** Your picks appear as a keyboard that stays pinned at
+  the top of the page.
+- **Copy and export.** Copy the alphabet to the clipboard, or download it as a
+  tab-separated text file with each character's name, script, and sound.
+- **Hear each sound.** Tap a sound group's IPA label to hear it through the
+  browser's speech synthesis.
+- **Long-press to copy.** Long-press any character to copy just that one.
+- **Saved selections.** Your alphabet stays in the browser's local storage
+  between visits.
 
-## Getting Started
+## How it's built
+
+- Next.js 16 (App Router), React 19, TypeScript, and Tailwind CSS 4.
+- Radix UI primitives with shadcn/ui-style components.
+- All character data lives in `src/data/alphabets.ts`. Tengwar glyphs render as
+  inline SVGs from `src/data/tengwar-glyphs.ts`, so they don't depend on a
+  private-use-area font.
+- The app is a single static page with no backend.
+
+## Run it locally
+
+1.  Install the dependencies:
+
+    ```bash
+    npm ci
+    ```
+
+1.  Start the development server:
+
+    ```bash
+    npm run dev
+    ```
+
+1.  Open <http://localhost:3000>.
+
+To serve a production build, run `npm run build`, then `npm start`.
+
+## Test
+
+The project has no automated tests. Use the linter and the production build as
+checks:
 
 ```bash
-npm install
-npm run dev
+npm run lint
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to start designing.
+## License
 
-## Tech Stack
-
-- Next.js 16 + TypeScript + Tailwind v4
-- shadcn/ui-style components
+The code in this repository is not licensed for reuse. All rights reserved.
